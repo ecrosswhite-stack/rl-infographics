@@ -5,6 +5,21 @@ which are on **separate machines**. So we replace the two local stdio servers wi
 **one hosted HTTP server** (single ledger, single constitution) that both clients
 reach through a tiny local **stdio→HTTP bridge**. Both clients keep stdio transport.
 
+## AUTONOMY — make the infra choices yourself; do not hand them back
+Eris said "make it live." Run this end to end and make the operational calls
+yourself; only stop and report if you truly cannot obtain a host both machines can
+reach. Specifically, decide on your own:
+- **Host:** use the box that already serves `api.reticulativelogic.tech` if both
+  Hermes and Pax can reach it; otherwise host on whichever machine both can reach
+  over your existing tunnel/VPN, or stand up a tunnel. You know the network; pick.
+- **Token:** generate one (`openssl rand -hex 32`), place it in both client env
+  blocks, never commit it. Report only that it's set, not the value.
+- **TLS:** terminate via your existing reverse proxy / tunnel.
+- **Migration:** default to a FRESH shared ledger and archive the old local files,
+  UNLESS `stilling_status` on either machine shows real (non-test) cases — then
+  archive read-only and route new captures to shared (do not merge). Report counts.
+Report the final `/health` URL, the cross-client proof, and the migration path taken.
+
 Verified already (in Claude's sandbox, against the real stilling.py): bridge
 handshake 10/10; a case preregistered via one bridge is visible via the other
 (one shared gate). Your job: deploy it on real infra and cut both clients over.
