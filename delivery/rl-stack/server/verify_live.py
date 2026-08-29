@@ -27,6 +27,8 @@ import urllib.request
 URL = os.environ.get("RL_GOV_URL", "http://127.0.0.1:8787/mcp")
 TOKEN = os.environ.get("RL_GOV_TOKEN", "")
 CLASS = os.environ.get("RL_VERIFY_CLASS", "wire_test")
+# Cloudflare blocks urllib's default UA (error 1010) — same fact the bridge handles.
+UA = "rl-verify/1.0"
 
 
 def _health_url() -> str:
@@ -36,14 +38,22 @@ def _health_url() -> str:
 
 def _post(obj, token=TOKEN, timeout=30):
     req = urllib.request.Request(URL, data=json.dumps(obj).encode(), method="POST",
-                                 headers={"Content-Type": "application/json"})
+                                 headers={"Content-Type": "application/json",
+                                          "User-Agent": UA})
     if token:
         req.add_header("Authorization", f"Bearer {token}")
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
-            return r.status, (json.loads(r.read() or b"null"))
+            body = r.read()
+            try:
+                return r.status, (json.loads(body or b"null"))
+            except ValueError:
+                return r.status, None
     except urllib.error.HTTPError as e:
         return e.code, None
+    except Exception as e:  # DNS, refused, TLS, timeout — record FAIL, don't crash
+        print(f"  transport error: {e}")
+        return 0, None
 
 
 def _call(name, args):
@@ -51,7 +61,10 @@ def _call(name, args):
                      "params": {"name": name, "arguments": args}})
     if not resp or "result" not in resp:
         return None
-    return json.loads(resp["result"]["content"][0]["text"])
+    try:
+        return json.loads(resp["result"]["content"][0]["text"])
+    except (KeyError, IndexError, TypeError, ValueError):
+        return None
 
 
 def main():
@@ -59,6 +72,8 @@ def main():
     ap.add_argument("--write", action="store_true")
     ap.add_argument("--read", action="store_true")
     ap.add_argument("--case", default=None, help="case_id (use the same on both machines)")
+    ap.add_argument("--expect-tip", default=None,
+                    help="full ledger tip printed by the --write run on the other machine")
     a = ap.parse_args()
     do_write = a.write or not a.read
     do_read = a.read or not a.write
@@ -69,9 +84,10 @@ def main():
         tests.append(name); print(("PASS " if cond else "FAIL ") + name + (f"  {extra}" if extra else ""))
         if not cond: fail.append(name)
 
-    # 1. health
+    # 1. health (custom UA — Cloudflare rejects urllib's default with error 1010)
     try:
-        with urllib.request.urlopen(_health_url(), timeout=15) as r:
+        hreq = urllib.request.Request(_health_url(), headers={"User-Agent": UA})
+        with urllib.request.urlopen(hreq, timeout=15) as r:
             h = json.loads(r.read())
         check("health_reachable", h.get("ok") is True, _health_url())
         check("tls_https", _health_url().startswith("https://"), "(else terminate TLS)")
@@ -102,10 +118,22 @@ def main():
             "system_value": 1.0, "baseline_value": 2.0, "baseline_label": "wire_baseline",
             "tier": "B_PROSPECTIVE"})
         check("write_preregister", bool(p and len(p.get("hash", "")) == 64), f"case_id={case_id}")
+        if p and p.get("ledger_tip"):
+            print(f"  hand to the reader:  --read --case {case_id} --expect-tip {p['ledger_tip']}")
     if do_read:
-        st = _call("stilling_status", {})
-        seen = any(c["decision_class"] == CLASS and c["cases"] >= 1 for c in (st or {}).get("classes", []))
-        check("read_sees_case", seen, f"looking for class={CLASS} (case {case_id})")
+        if a.expect_tip:
+            # Sound cross-machine proof: identical full tip hash => identical chain
+            # => the reader's server holds the writer's commit. (A mismatch can also
+            # mean another write landed in between — false FAIL, never false PASS.)
+            v0 = _call("stilling_verify_ledger", {"decision_class": CLASS})
+            tip = (v0 or {}).get("tip") or ""
+            check("read_sees_write_tip", tip == a.expect_tip,
+                  f"tip={tip[:16]} expected={a.expect_tip[:16]}")
+        else:
+            st = _call("stilling_status", {})
+            seen = any(c["decision_class"] == CLASS and c["cases"] >= 1 for c in (st or {}).get("classes", []))
+            check("read_sees_case", seen,
+                  f"WEAK: class-count only, not a cross-machine proof — pass --expect-tip (class={CLASS})")
 
     # 6. ledger verifies
     v = _call("stilling_verify_ledger", {"decision_class": CLASS})
