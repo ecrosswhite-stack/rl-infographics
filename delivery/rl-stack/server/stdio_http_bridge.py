@@ -29,7 +29,9 @@ TIMEOUT = float(os.environ.get("RL_GOV_TIMEOUT", "30"))
 def _post(obj: dict):
     data = json.dumps(obj).encode()
     req = urllib.request.Request(URL, data=data, method="POST",
-                                 headers={"Content-Type": "application/json"})
+                                 headers={"Content-Type": "application/json",
+                                          # Cloudflare blocks urllib's default UA (1010).
+                                          "User-Agent": "RL-Governance-Bridge/1.0"})
     if TOKEN:
         req.add_header("Authorization", f"Bearer {TOKEN}")
     with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:

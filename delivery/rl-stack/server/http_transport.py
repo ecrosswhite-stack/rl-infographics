@@ -63,14 +63,14 @@ class Handler(BaseHTTPRequestHandler):
             self._send(404, b'{"error":"not found"}')
 
     def do_POST(self):
+        length = int(self.headers.get("Content-Length", "0") or "0")
+        raw = self.rfile.read(length) if length else b""
         if self.path.split("?")[0].rstrip("/") != PATH.rstrip("/"):
             self._send(404, b'{"error":"not found"}')
             return
         if not self._authed():
             self._send(401, b'{"error":"unauthorized"}')
             return
-        length = int(self.headers.get("Content-Length", "0") or "0")
-        raw = self.rfile.read(length) if length else b""
         try:
             req = json.loads(raw or b"{}")
         except json.JSONDecodeError:
