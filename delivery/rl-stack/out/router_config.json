@@ -1,0 +1,85 @@
+{
+  "mode": "mock",
+  "target_routing_rate": 0.25,
+  "verifier_threshold": null,
+  "calibration_floor": 0.55,
+  "self_consistency_k": 3,
+  "eval_size": 120,
+  "seed": 7,
+  "tiers": {
+    "small": {
+      "role": "small",
+      "name": "qwen3.5:4b",
+      "backend": "ollama",
+      "price_in_per_m": 0.0,
+      "price_out_per_m": 0.0,
+      "base_url_env": "OLLAMA_BASE_URL"
+    },
+    "large": {
+      "role": "large",
+      "backend": "openai_compatible",
+      "name": "openai/gpt-oss-120b",
+      "price_in_per_m": 0.15,
+      "price_out_per_m": 0.6,
+      "base_url": "https://api.groq.com/openai/v1",
+      "api_key_env": "GROQ_API_KEY"
+    }
+  },
+  "large_presets": {
+    "groq": {
+      "backend": "openai_compatible",
+      "name": "openai/gpt-oss-120b",
+      "price_in_per_m": 0.15,
+      "price_out_per_m": 0.6,
+      "base_url": "https://api.groq.com/openai/v1",
+      "api_key_env": "GROQ_API_KEY"
+    },
+    "openai": {
+      "backend": "openai_compatible",
+      "name": "gpt-4o-mini",
+      "price_in_per_m": 0.15,
+      "price_out_per_m": 0.6,
+      "base_url": "https://api.openai.com/v1",
+      "api_key_env": "OPENAI_API_KEY"
+    },
+    "anthropic": {
+      "backend": "anthropic",
+      "name": "claude-haiku-4-5-20251001",
+      "price_in_per_m": 1.0,
+      "price_out_per_m": 5.0,
+      "api_key_env": "ANTHROPIC_API_KEY"
+    },
+    "bedrock": {
+      "backend": "bedrock",
+      "name": "anthropic.claude-3-5-haiku-20241022-v1:0",
+      "price_in_per_m": 0.8,
+      "price_out_per_m": 4.0,
+      "region": "us-east-1"
+    },
+    "kimi": {
+      "backend": "openai_compatible",
+      "name": "kimi-k2",
+      "price_in_per_m": 0.6,
+      "price_out_per_m": 2.5,
+      "base_url": "https://api.moonshot.ai/v1",
+      "api_key_env": "MOONSHOT_API_KEY"
+    },
+    "grok": {
+      "backend": "openai_compatible",
+      "name": "grok-2",
+      "price_in_per_m": 2.0,
+      "price_out_per_m": 10.0,
+      "base_url": "https://api.x.ai/v1",
+      "api_key_env": "XAI_API_KEY"
+    },
+    "ollama_large": {
+      "backend": "ollama",
+      "name": "qwen3.5:32b",
+      "price_in_per_m": 0.0,
+      "price_out_per_m": 0.0,
+      "base_url_env": "OLLAMA_BASE_URL"
+    }
+  },
+  "_constitution_version": "1.1.0",
+  "_inject": "[RL stack v1.1.0] You are one tier in a governed cascade. Shared rules:\n- Every emitted quantity is sourced-with-citation or tagged IGNORANCE + data request. Never confabulate.\n- Never let one status axis borrow another's authority. Split axes; each stands on its own true footing.\n- No employer-sourced data or decisions enter the corpus. Ever. Public data + independent ventures only.\n- Answer first, dense, apparatus second. One clarifying question maximum.\n- Any quantity you cannot source -> [IGNORANCE] + data request; never invent numbers.\n- Decisions/forecasts: per-claim TRUTH/FALSITY/IGNORANCE, every IGNORANCE carries a data request.\n"
+}

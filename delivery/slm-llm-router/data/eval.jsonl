@@ -1,0 +1,120 @@
+{"id": "ari0", "kind": "arithmetic", "prompt": "Compute (12 + 28) * 2. Answer with just the number.", "answer": "80", "difficulty": 0.7, "distractor": ""}
+{"id": "ari1", "kind": "arithmetic", "prompt": "What is 70 + 14? Answer with just the number.", "answer": "84", "difficulty": 0.15, "distractor": ""}
+{"id": "ari2", "kind": "arithmetic", "prompt": "Compute (6 + 35) * 5. Answer with just the number.", "answer": "205", "difficulty": 0.7, "distractor": ""}
+{"id": "ari3", "kind": "arithmetic", "prompt": "What is 57 + 55? Answer with just the number.", "answer": "112", "difficulty": 0.15, "distractor": ""}
+{"id": "ari4", "kind": "arithmetic", "prompt": "What is 13 + 72? Answer with just the number.", "answer": "85", "difficulty": 0.15, "distractor": ""}
+{"id": "ari5", "kind": "arithmetic", "prompt": "Compute (39 + 10) * 5. Answer with just the number.", "answer": "245", "difficulty": 0.7, "distractor": ""}
+{"id": "ext6", "kind": "extract", "prompt": "Extract the order number: 'Order #2013 has shipped today.' Just the number.", "answer": "2013", "difficulty": 0.35, "distractor": ""}
+{"id": "cls7", "kind": "classify", "prompt": "Sentiment (positive or negative): 'I love this product'. One word.", "answer": "positive", "difficulty": 0.2, "distractor": "negative"}
+{"id": "ari8", "kind": "arithmetic", "prompt": "What is 19 + 39? Answer with just the number.", "answer": "58", "difficulty": 0.15, "distractor": ""}
+{"id": "ari9", "kind": "arithmetic", "prompt": "Compute (37 + 10) * 6. Answer with just the number.", "answer": "282", "difficulty": 0.7, "distractor": ""}
+{"id": "cls10", "kind": "classify", "prompt": "Sentiment (positive or negative): 'This is terrible'. One word.", "answer": "negative", "difficulty": 0.2, "distractor": "positive"}
+{"id": "cls11", "kind": "classify", "prompt": "Sentiment (positive or negative): 'Worst purchase ever'. One word.", "answer": "negative", "difficulty": 0.2, "distractor": "positive"}
+{"id": "ari12", "kind": "arithmetic", "prompt": "What is 93 + 10? Answer with just the number.", "answer": "103", "difficulty": 0.15, "distractor": ""}
+{"id": "cls13", "kind": "classify", "prompt": "Sentiment (positive or negative): 'Worst purchase ever'. One word.", "answer": "negative", "difficulty": 0.2, "distractor": "positive"}
+{"id": "ext14", "kind": "extract", "prompt": "Extract the order number: 'Order #8005 has shipped today.' Just the number.", "answer": "8005", "difficulty": 0.35, "distractor": ""}
+{"id": "cnt15", "kind": "count", "prompt": "How many days are in 5 weeks? Just the number.", "answer": "35", "difficulty": 0.45, "distractor": ""}
+{"id": "cls16", "kind": "classify", "prompt": "Sentiment (positive or negative): 'Absolutely fantastic experience'. One word.", "answer": "positive", "difficulty": 0.2, "distractor": "negative"}
+{"id": "ari17", "kind": "arithmetic", "prompt": "What is 25 + 91? Answer with just the number.", "answer": "116", "difficulty": 0.15, "distractor": ""}
+{"id": "cnt18", "kind": "count", "prompt": "How many days are in 2 weeks? Just the number.", "answer": "14", "difficulty": 0.45, "distractor": ""}
+{"id": "cls19", "kind": "classify", "prompt": "Sentiment (positive or negative): 'Worst purchase ever'. One word.", "answer": "negative", "difficulty": 0.2, "distractor": "positive"}
+{"id": "cnt20", "kind": "count", "prompt": "How many days are in 4 weeks? Just the number.", "answer": "28", "difficulty": 0.45, "distractor": ""}
+{"id": "ext21", "kind": "extract", "prompt": "Extract the order number: 'Order #2199 has shipped today.' Just the number.", "answer": "2199", "difficulty": 0.35, "distractor": ""}
+{"id": "ari22", "kind": "arithmetic", "prompt": "What is 55 + 23? Answer with just the number.", "answer": "78", "difficulty": 0.15, "distractor": ""}
+{"id": "cnt23", "kind": "count", "prompt": "How many days are in 3 weeks? Just the number.", "answer": "21", "difficulty": 0.45, "distractor": ""}
+{"id": "fac24", "kind": "factual", "prompt": "Which is larger, 63 or 15? Answer with the number itself.", "answer": "63", "difficulty": 0.8, "distractor": "15"}
+{"id": "fac25", "kind": "factual", "prompt": "Which is larger, 19 or 81? Answer with the number itself.", "answer": "81", "difficulty": 0.8, "distractor": "19"}
+{"id": "cls26", "kind": "classify", "prompt": "Sentiment (positive or negative): 'Worst purchase ever'. One word.", "answer": "negative", "difficulty": 0.2, "distractor": "positive"}
+{"id": "ari27", "kind": "arithmetic", "prompt": "Compute (25 + 34) * 9. Answer with just the number.", "answer": "531", "difficulty": 0.7, "distractor": ""}
+{"id": "ari28", "kind": "arithmetic", "prompt": "What is 13 + 36? Answer with just the number.", "answer": "49", "difficulty": 0.15, "distractor": ""}
+{"id": "cls29", "kind": "classify", "prompt": "Sentiment (positive or negative): 'This is terrible'. One word.", "answer": "negative", "difficulty": 0.2, "distractor": "positive"}
+{"id": "cnt30", "kind": "count", "prompt": "How many days are in 4 weeks? Just the number.", "answer": "28", "difficulty": 0.45, "distractor": ""}
+{"id": "ext31", "kind": "extract", "prompt": "Extract the order number: 'Order #8301 has shipped today.' Just the number.", "answer": "8301", "difficulty": 0.35, "distractor": ""}
+{"id": "ari32", "kind": "arithmetic", "prompt": "What is 51 + 87? Answer with just the number.", "answer": "138", "difficulty": 0.15, "distractor": ""}
+{"id": "ari33", "kind": "arithmetic", "prompt": "Compute (32 + 25) * 4. Answer with just the number.", "answer": "228", "difficulty": 0.7, "distractor": ""}
+{"id": "ext34", "kind": "extract", "prompt": "Extract the order number: 'Order #9088 has shipped today.' Just the number.", "answer": "9088", "difficulty": 0.35, "distractor": ""}
+{"id": "ari35", "kind": "arithmetic", "prompt": "What is 38 + 18? Answer with just the number.", "answer": "56", "difficulty": 0.15, "distractor": ""}
+{"id": "cnt36", "kind": "count", "prompt": "How many days are in 5 weeks? Just the number.", "answer": "35", "difficulty": 0.45, "distractor": ""}
+{"id": "ari37", "kind": "arithmetic", "prompt": "Compute (34 + 8) * 4. Answer with just the number.", "answer": "168", "difficulty": 0.7, "distractor": ""}
+{"id": "ari38", "kind": "arithmetic", "prompt": "Compute (38 + 20) * 4. Answer with just the number.", "answer": "232", "difficulty": 0.7, "distractor": ""}
+{"id": "cnt39", "kind": "count", "prompt": "How many days are in 6 weeks? Just the number.", "answer": "42", "difficulty": 0.45, "distractor": ""}
+{"id": "ari40", "kind": "arithmetic", "prompt": "What is 55 + 47? Answer with just the number.", "answer": "102", "difficulty": 0.15, "distractor": ""}
+{"id": "ext41", "kind": "extract", "prompt": "Extract the order number: 'Order #7233 has shipped today.' Just the number.", "answer": "7233", "difficulty": 0.35, "distractor": ""}
+{"id": "fac42", "kind": "factual", "prompt": "Which is larger, 29 or 20? Answer with the number itself.", "answer": "29", "difficulty": 0.8, "distractor": "20"}
+{"id": "ari43", "kind": "arithmetic", "prompt": "What is 31 + 86? Answer with just the number.", "answer": "117", "difficulty": 0.15, "distractor": ""}
+{"id": "ari44", "kind": "arithmetic", "prompt": "What is 64 + 77? Answer with just the number.", "answer": "141", "difficulty": 0.15, "distractor": ""}
+{"id": "ari45", "kind": "arithmetic", "prompt": "What is 38 + 2? Answer with just the number.", "answer": "40", "difficulty": 0.15, "distractor": ""}
+{"id": "ari46", "kind": "arithmetic", "prompt": "What is 70 + 49? Answer with just the number.", "answer": "119", "difficulty": 0.15, "distractor": ""}
+{"id": "ext47", "kind": "extract", "prompt": "Extract the order number: 'Order #6220 has shipped today.' Just the number.", "answer": "6220", "difficulty": 0.35, "distractor": ""}
+{"id": "fac48", "kind": "factual", "prompt": "Which is larger, 98 or 75? Answer with the number itself.", "answer": "98", "difficulty": 0.8, "distractor": "75"}
+{"id": "fac49", "kind": "factual", "prompt": "Which is larger, 93 or 96? Answer with the number itself.", "answer": "96", "difficulty": 0.8, "distractor": "93"}
+{"id": "cnt50", "kind": "count", "prompt": "How many days are in 5 weeks? Just the number.", "answer": "35", "difficulty": 0.45, "distractor": ""}
+{"id": "fac51", "kind": "factual", "prompt": "Which is larger, 97 or 81? Answer with the number itself.", "answer": "97", "difficulty": 0.8, "distractor": "81"}
+{"id": "ari52", "kind": "arithmetic", "prompt": "Compute (28 + 28) * 3. Answer with just the number.", "answer": "168", "difficulty": 0.7, "distractor": ""}
+{"id": "cls53", "kind": "classify", "prompt": "Sentiment (positive or negative): 'I love this product'. One word.", "answer": "positive", "difficulty": 0.2, "distractor": "negative"}
+{"id": "ari54", "kind": "arithmetic", "prompt": "What is 28 + 58? Answer with just the number.", "answer": "86", "difficulty": 0.15, "distractor": ""}
+{"id": "ari55", "kind": "arithmetic", "prompt": "What is 45 + 78? Answer with just the number.", "answer": "123", "difficulty": 0.15, "distractor": ""}
+{"id": "ari56", "kind": "arithmetic", "prompt": "What is 2 + 74? Answer with just the number.", "answer": "76", "difficulty": 0.15, "distractor": ""}
+{"id": "ari57", "kind": "arithmetic", "prompt": "What is 14 + 48? Answer with just the number.", "answer": "62", "difficulty": 0.15, "distractor": ""}
+{"id": "ext58", "kind": "extract", "prompt": "Extract the order number: 'Order #2152 has shipped today.' Just the number.", "answer": "2152", "difficulty": 0.35, "distractor": ""}
+{"id": "fac59", "kind": "factual", "prompt": "Which is larger, 88 or 58? Answer with the number itself.", "answer": "88", "difficulty": 0.8, "distractor": "58"}
+{"id": "ari60", "kind": "arithmetic", "prompt": "What is 34 + 46? Answer with just the number.", "answer": "80", "difficulty": 0.15, "distractor": ""}
+{"id": "ext61", "kind": "extract", "prompt": "Extract the order number: 'Order #8768 has shipped today.' Just the number.", "answer": "8768", "difficulty": 0.35, "distractor": ""}
+{"id": "ari62", "kind": "arithmetic", "prompt": "What is 64 + 61? Answer with just the number.", "answer": "125", "difficulty": 0.15, "distractor": ""}
+{"id": "cls63", "kind": "classify", "prompt": "Sentiment (positive or negative): 'I love this product'. One word.", "answer": "positive", "difficulty": 0.2, "distractor": "negative"}
+{"id": "ari64", "kind": "arithmetic", "prompt": "What is 45 + 96? Answer with just the number.", "answer": "141", "difficulty": 0.15, "distractor": ""}
+{"id": "ari65", "kind": "arithmetic", "prompt": "What is 90 + 22? Answer with just the number.", "answer": "112", "difficulty": 0.15, "distractor": ""}
+{"id": "cls66", "kind": "classify", "prompt": "Sentiment (positive or negative): 'This made my day'. One word.", "answer": "positive", "difficulty": 0.2, "distractor": "negative"}
+{"id": "ari67", "kind": "arithmetic", "prompt": "Compute (37 + 4) * 6. Answer with just the number.", "answer": "246", "difficulty": 0.7, "distractor": ""}
+{"id": "fac68", "kind": "factual", "prompt": "Which is larger, 21 or 99? Answer with the number itself.", "answer": "99", "difficulty": 0.8, "distractor": "21"}
+{"id": "cnt69", "kind": "count", "prompt": "How many days are in 6 weeks? Just the number.", "answer": "42", "difficulty": 0.45, "distractor": ""}
+{"id": "ari70", "kind": "arithmetic", "prompt": "Compute (13 + 25) * 5. Answer with just the number.", "answer": "190", "difficulty": 0.7, "distractor": ""}
+{"id": "cls71", "kind": "classify", "prompt": "Sentiment (positive or negative): 'Worst purchase ever'. One word.", "answer": "negative", "difficulty": 0.2, "distractor": "positive"}
+{"id": "ext72", "kind": "extract", "prompt": "Extract the order number: 'Order #4197 has shipped today.' Just the number.", "answer": "4197", "difficulty": 0.35, "distractor": ""}
+{"id": "cnt73", "kind": "count", "prompt": "How many days are in 5 weeks? Just the number.", "answer": "35", "difficulty": 0.45, "distractor": ""}
+{"id": "cnt74", "kind": "count", "prompt": "How many days are in 3 weeks? Just the number.", "answer": "21", "difficulty": 0.45, "distractor": ""}
+{"id": "ari75", "kind": "arithmetic", "prompt": "What is 65 + 47? Answer with just the number.", "answer": "112", "difficulty": 0.15, "distractor": ""}
+{"id": "cnt76", "kind": "count", "prompt": "How many days are in 2 weeks? Just the number.", "answer": "14", "difficulty": 0.45, "distractor": ""}
+{"id": "cnt77", "kind": "count", "prompt": "How many days are in 5 weeks? Just the number.", "answer": "35", "difficulty": 0.45, "distractor": ""}
+{"id": "ari78", "kind": "arithmetic", "prompt": "What is 90 + 79? Answer with just the number.", "answer": "169", "difficulty": 0.15, "distractor": ""}
+{"id": "fac79", "kind": "factual", "prompt": "Which is larger, 67 or 54? Answer with the number itself.", "answer": "67", "difficulty": 0.8, "distractor": "54"}
+{"id": "fac80", "kind": "factual", "prompt": "Which is larger, 56 or 20? Answer with the number itself.", "answer": "56", "difficulty": 0.8, "distractor": "20"}
+{"id": "ari81", "kind": "arithmetic", "prompt": "What is 31 + 62? Answer with just the number.", "answer": "93", "difficulty": 0.15, "distractor": ""}
+{"id": "ari82", "kind": "arithmetic", "prompt": "What is 28 + 63? Answer with just the number.", "answer": "91", "difficulty": 0.15, "distractor": ""}
+{"id": "ext83", "kind": "extract", "prompt": "Extract the order number: 'Order #1031 has shipped today.' Just the number.", "answer": "1031", "difficulty": 0.35, "distractor": ""}
+{"id": "cls84", "kind": "classify", "prompt": "Sentiment (positive or negative): 'I hate it'. One word.", "answer": "negative", "difficulty": 0.2, "distractor": "positive"}
+{"id": "ari85", "kind": "arithmetic", "prompt": "What is 86 + 17? Answer with just the number.", "answer": "103", "difficulty": 0.15, "distractor": ""}
+{"id": "fac86", "kind": "factual", "prompt": "Which is larger, 35 or 71? Answer with the number itself.", "answer": "71", "difficulty": 0.8, "distractor": "35"}
+{"id": "fac87", "kind": "factual", "prompt": "Which is larger, 65 or 91? Answer with the number itself.", "answer": "91", "difficulty": 0.8, "distractor": "65"}
+{"id": "ari88", "kind": "arithmetic", "prompt": "Compute (28 + 32) * 8. Answer with just the number.", "answer": "480", "difficulty": 0.7, "distractor": ""}
+{"id": "cnt89", "kind": "count", "prompt": "How many days are in 2 weeks? Just the number.", "answer": "14", "difficulty": 0.45, "distractor": ""}
+{"id": "cnt90", "kind": "count", "prompt": "How many days are in 3 weeks? Just the number.", "answer": "21", "difficulty": 0.45, "distractor": ""}
+{"id": "fac91", "kind": "factual", "prompt": "Which is larger, 13 or 29? Answer with the number itself.", "answer": "29", "difficulty": 0.8, "distractor": "13"}
+{"id": "cls92", "kind": "classify", "prompt": "Sentiment (positive or negative): 'This made my day'. One word.", "answer": "positive", "difficulty": 0.2, "distractor": "negative"}
+{"id": "ari93", "kind": "arithmetic", "prompt": "What is 78 + 62? Answer with just the number.", "answer": "140", "difficulty": 0.15, "distractor": ""}
+{"id": "ext94", "kind": "extract", "prompt": "Extract the order number: 'Order #6741 has shipped today.' Just the number.", "answer": "6741", "difficulty": 0.35, "distractor": ""}
+{"id": "ari95", "kind": "arithmetic", "prompt": "What is 72 + 18? Answer with just the number.", "answer": "90", "difficulty": 0.15, "distractor": ""}
+{"id": "ari96", "kind": "arithmetic", "prompt": "What is 94 + 85? Answer with just the number.", "answer": "179", "difficulty": 0.15, "distractor": ""}
+{"id": "ari97", "kind": "arithmetic", "prompt": "What is 97 + 19? Answer with just the number.", "answer": "116", "difficulty": 0.15, "distractor": ""}
+{"id": "ari98", "kind": "arithmetic", "prompt": "Compute (15 + 16) * 2. Answer with just the number.", "answer": "62", "difficulty": 0.7, "distractor": ""}
+{"id": "ari99", "kind": "arithmetic", "prompt": "What is 39 + 66? Answer with just the number.", "answer": "105", "difficulty": 0.15, "distractor": ""}
+{"id": "ari100", "kind": "arithmetic", "prompt": "What is 77 + 43? Answer with just the number.", "answer": "120", "difficulty": 0.15, "distractor": ""}
+{"id": "ari101", "kind": "arithmetic", "prompt": "What is 55 + 18? Answer with just the number.", "answer": "73", "difficulty": 0.15, "distractor": ""}
+{"id": "ari102", "kind": "arithmetic", "prompt": "What is 96 + 47? Answer with just the number.", "answer": "143", "difficulty": 0.15, "distractor": ""}
+{"id": "fac103", "kind": "factual", "prompt": "Which is larger, 94 or 84? Answer with the number itself.", "answer": "94", "difficulty": 0.8, "distractor": "84"}
+{"id": "cnt104", "kind": "count", "prompt": "How many days are in 6 weeks? Just the number.", "answer": "42", "difficulty": 0.45, "distractor": ""}
+{"id": "ari105", "kind": "arithmetic", "prompt": "Compute (35 + 11) * 4. Answer with just the number.", "answer": "184", "difficulty": 0.7, "distractor": ""}
+{"id": "cls106", "kind": "classify", "prompt": "Sentiment (positive or negative): 'Absolutely fantastic experience'. One word.", "answer": "positive", "difficulty": 0.2, "distractor": "negative"}
+{"id": "cnt107", "kind": "count", "prompt": "How many days are in 6 weeks? Just the number.", "answer": "42", "difficulty": 0.45, "distractor": ""}
+{"id": "ari108", "kind": "arithmetic", "prompt": "What is 21 + 24? Answer with just the number.", "answer": "45", "difficulty": 0.15, "distractor": ""}
+{"id": "ari109", "kind": "arithmetic", "prompt": "What is 81 + 94? Answer with just the number.", "answer": "175", "difficulty": 0.15, "distractor": ""}
+{"id": "ari110", "kind": "arithmetic", "prompt": "What is 9 + 43? Answer with just the number.", "answer": "52", "difficulty": 0.15, "distractor": ""}
+{"id": "ext111", "kind": "extract", "prompt": "Extract the order number: 'Order #9695 has shipped today.' Just the number.", "answer": "9695", "difficulty": 0.35, "distractor": ""}
+{"id": "cls112", "kind": "classify", "prompt": "Sentiment (positive or negative): 'This is terrible'. One word.", "answer": "negative", "difficulty": 0.2, "distractor": "positive"}
+{"id": "fac113", "kind": "factual", "prompt": "Which is larger, 17 or 41? Answer with the number itself.", "answer": "41", "difficulty": 0.8, "distractor": "17"}
+{"id": "ari114", "kind": "arithmetic", "prompt": "What is 7 + 14? Answer with just the number.", "answer": "21", "difficulty": 0.15, "distractor": ""}
+{"id": "cls115", "kind": "classify", "prompt": "Sentiment (positive or negative): 'This is terrible'. One word.", "answer": "negative", "difficulty": 0.2, "distractor": "positive"}
+{"id": "ari116", "kind": "arithmetic", "prompt": "Compute (35 + 35) * 5. Answer with just the number.", "answer": "350", "difficulty": 0.7, "distractor": ""}
+{"id": "ext117", "kind": "extract", "prompt": "Extract the order number: 'Order #8411 has shipped today.' Just the number.", "answer": "8411", "difficulty": 0.35, "distractor": ""}
+{"id": "cls118", "kind": "classify", "prompt": "Sentiment (positive or negative): 'I hate it'. One word.", "answer": "negative", "difficulty": 0.2, "distractor": "positive"}
+{"id": "fac119", "kind": "factual", "prompt": "Which is larger, 99 or 76? Answer with the number itself.", "answer": "99", "difficulty": 0.8, "distractor": "76"}
