@@ -5,7 +5,7 @@ description: Reference card for the Hermes "self-wake" plugin, which wakes an ex
 # Hermes self-wake (reference card)
 
 **Hermes original:** https://github.com/mentatzoe/hermes-self-wake-plugin @ e6057e0 · tier: community · category: automation · license: Apache-2.0
-**Port class:** D — it wraps private Hermes gateway internals (`GatewayRunner.wake_session`, cron `_deliver_result`, `SessionStore`) behind exact-host SHA checks; nothing of it applies outside Hermes. The catalog row marks it as no longer in the catalog (`still_in_catalog: false`).
+**Port class:** D — it wraps private Hermes gateway internals (`GatewayRunner.wake_session`, cron `_deliver_result`, `SessionStore`) behind exact-host SHA checks; nothing of it applies outside Hermes (the catalog row also marks it `still_in_catalog: false`).
 
 ## What the Hermes plugin does
 Registers tools `self_wake_sessions` (resolve target sessions), `self_wake_subscribe_kanban` (subscribe a Kanban task so terminal events wake a session, with dry-run), `self_wake_receipts` (durable wake receipts, `source_kind` kanban or cron_delivery) and `self_wake_doctor` (per-surface capability report), the `/self-wake` command, a `pre_llm_call` hook, and the bundled skill `kanban-self-wake`. A compat shim (`self_wake.compat_shim_enabled: true` in `config.yaml`) installs two wrappers around Hermes cron delivery so each successful platform/chat route wakes the owning session (`cron.wake_agent_on_delivery: true`). It refuses to install if the host commit or the SHA-256 of four private callables differs from the supported Hermes commit (`21895bd3`).
