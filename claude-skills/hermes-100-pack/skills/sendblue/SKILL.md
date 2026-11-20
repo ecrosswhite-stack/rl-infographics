@@ -5,7 +5,7 @@ description: Send iMessage or SMS texts and list recent messages through the Sen
 # Sendblue iMessage / SMS
 
 **Hermes original:** https://github.com/duoi/hermes-sendblue-plugin @ 3318aaa · tier: community · category: platform · license: MIT
-**Port class:** C — the two tools are plain Sendblue REST calls Claude can make; the inbound polling daemon, per-phone session routing and the `pre_llm_call` typing-indicator hook depend on the Hermes runtime.
+**Port class:** C · the two tools are plain Sendblue REST calls Claude can make; the inbound polling daemon, per-phone session routing and the `pre_llm_call` typing-indicator hook depend on the Hermes runtime.
 
 ## What the Hermes plugin does
 Registers tools `sendblue_send_message` and `sendblue_list_messages` (toolset `sendblue`) and a `pre_llm_call` hook that fires a typing indicator to `SENDBLUE_ACTIVE_USER_PHONE` while the model thinks. A separate `daemon.py` polls Sendblue for inbound texts, gates them against `USER_PHONE`, maps each phone number to a Hermes session in a SQLite DB, invokes the `hermes` CLI, and texts the answer back. Tool use is gated to admin numbers (`SENDBLUE_ADMIN_PHONES`, falling back to `USER_PHONE`).

@@ -5,7 +5,7 @@ description: Reference card for the Hermes hermes-telemetry plugin, which hooked
 # Hermes Telemetry (reference card)
 
 **Hermes original:** https://github.com/nujovich/hermes-telemetry @ 146f674 · tier: community · category: general · license: MIT
-**Port class:** D — it is built entirely on Hermes runtime hooks (`pre_api_request`, `post_api_request`, `api_request_error`, `pre_llm_call`, `pre_tool_call`, ...) and Hermes slash commands; there is no API or file format for Claude to call.
+**Port class:** D · it is built entirely on Hermes runtime hooks (`pre_api_request`, `post_api_request`, `api_request_error`, `pre_llm_call`, `pre_tool_call`, ...) and Hermes slash commands; there is no API or file format for Claude to call.
 
 ## What the Hermes plugin does
 Per plugin.yaml (`kind: standalone`) it registers twelve hooks: `on_session_start`, `pre_api_request`, `post_api_request`, `api_request_error`, `post_tool_call`, `post_llm_call`, `on_session_end`, `on_session_finalize`, `subagent_start`, `subagent_stop`, `pre_llm_call`, `pre_tool_call`; slash commands `/stats`, `/budget` and `/setup`; and a `hermes-telemetry` CLI (`stats today|week|month|cron|providers|models|efficiency|smells`, `budget`, `budget forecast`, `--from/--to`, `--json`). It writes `~/.hermes/telemetry/telemetry.db` (SQLite WAL), `telemetry.log`, `pricing.yaml` and `budget.yaml`, refreshes prices from `https://openrouter.ai/api/v1/models`, estimates tokens at 4 chars/token when usage is missing, detects cron sessions by id pattern, and blocks the next LLM call when a configured budget is breached. A separate web dashboard reads the same database.

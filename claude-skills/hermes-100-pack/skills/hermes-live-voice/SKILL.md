@@ -5,7 +5,7 @@ description: Reference card only. Describes the Hermes "hermes-live-voice" (talk
 # Live Voice for Hermes Desktop (reference card)
 
 **Hermes original:** https://github.com/Synero/hermes-live-voice @ 5f0022b · tier: community · category: voice · license: MIT
-**Port class:** D — it is a Hermes Desktop renderer plugin plus a Hermes dashboard API route; neither surface exists in Claude.
+**Port class:** D · it is a Hermes Desktop renderer plugin plus a Hermes dashboard API route; neither surface exists in Claude.
 
 ## What the Hermes plugin does
 Per the README, the plugin (manifest name `talk-desktop`, version 0.2.1) ships two halves: `dashboard/plugin_api.py`, mounted by the Hermes dashboard under `/api/plugins/talk-desktop/`, and `desktop/plugin.js`, loaded by Hermes Desktop. The desktop half negotiates a WebRTC session; a local broker spawns `codex app-server` and drives a realtime conversation with model `gpt-live-1-codex` on the user's ChatGPT/Codex login. It shows a live transcript, mic and mute controls, usage panels, and delegates spoken task requests into the focused Hermes chat (`delegation: client`) or an opt-in server-side Codex agent thread. `__init__.py` registers no tools or hooks. Settings live in `settings.json` (`codexAgentModel`, `delegation`). It bundles MIT-licensed fallback code from TheSmokeDev/hermes-talk.

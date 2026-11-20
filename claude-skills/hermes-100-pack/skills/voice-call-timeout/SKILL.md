@@ -5,7 +5,7 @@ description: Reference card only. Describes the voice-call-timeout plugin, which
 # Voice Call Timeout (Discord voice idle timer)
 
 **Hermes original:** https://github.com/RenoMG/hermes-voice-call-timeout-plugin @ 80ea52e · tier: community · category: voice · license: no LICENSE file found
-**Port class:** D — it monkeypatches `gateway.platforms.discord.DiscordAdapter` inside the Hermes gateway process; there is nothing to call from outside.
+**Port class:** D · it monkeypatches `gateway.platforms.discord.DiscordAdapter` inside the Hermes gateway process; there is nothing to call from outside.
 
 ## What the Hermes plugin does
 At startup it patches three `DiscordAdapter` methods (`__init__`, `_reset_voice_timeout`, `_voice_timeout_handler`) so the hard-coded voice inactivity timeout is read from `$HERMES_HOME/plugin-data/voice-call-timeout/settings.json` (default 300 s). It registers one command, `/voice-timeout`, accepting `status`, durations such as `20m`, `1h 30m` or `900`, and `off`/`disable`/`none` to stop auto-leave, and re-applies the value to live voice sessions immediately. No tools, hooks or env vars. This plugin is no longer in the current catalog (`still_in_catalog: false` in the classified row).

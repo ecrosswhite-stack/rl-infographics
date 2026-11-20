@@ -5,7 +5,7 @@ description: Extract clean Markdown from any web page (including JavaScript-rend
 # Crawl4ai Web Extract (self-hosted)
 
 **Hermes original:** https://github.com/mblauser/hermes-plugin-crawl4ai @ 6eb0842 · tier: community · category: web · license: no LICENSE file found (README text says MIT)
-**Port class:** B — the plugin is a thin HTTP client for the crawl4ai `/md` endpoint, which Claude can call directly with curl or Python.
+**Port class:** B · the plugin is a thin HTTP client for the crawl4ai `/md` endpoint, which Claude can call directly with curl or Python.
 
 ## What the Hermes plugin does
 Registers a `crawl4ai` web extract backend (`provides_web_providers: [crawl4ai]`) for the Hermes `web_extract` tool. It POSTs each URL to `{CRAWL4AI_URL}/md` with a Bearer token and returns the Markdown as a normalized document. It is extract-only (`supports_search()` is False); search is left to SearXNG. It refuses URLs that resolve to private or internal network addresses (SSRF check). No tools or hooks are registered.

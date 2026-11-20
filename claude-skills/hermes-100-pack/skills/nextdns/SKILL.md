@@ -1,11 +1,11 @@
 ---
 name: nextdns
-description: Triage DNS with the official NextDNS API, read-only, as the Hermes nextdns plugin did: pull the DNS query log with domain, status, device and time filters, list recently blocked queries with the blocklist that matched, get aggregate analytics (top domains, blocklists, devices, protocols, status) and read profile settings such as whether logging is on and its retention. Use it when a user asks "was this domain blocked by NextDNS and by what", "show my NextDNS logs for this device", "which blocklist caught X", "top blocked domains today", "is NextDNS logging enabled", or anything about NextDNS query logs or analytics. Requires NEXTDNS_API_KEY.
+description: "Triage DNS with the official NextDNS API, read-only, as the Hermes nextdns plugin did: pull the DNS query log with domain, status, device and time filters, list recently blocked queries with the blocklist that matched, get aggregate analytics (top domains, blocklists, devices, protocols, status) and read profile settings such as whether logging is on and its retention. Use it when a user asks \"was this domain blocked by NextDNS and by what\", \"show my NextDNS logs for this device\", \"which blocklist caught X\", \"top blocked domains today\", \"is NextDNS logging enabled\", or anything about NextDNS query logs or analytics. Requires NEXTDNS_API_KEY."
 ---
 # NextDNS triage
 
 **Hermes original:** https://github.com/shanelord01/hermes-nextdns @ 6e46460 · tier: community · category: tools · license: MIT
-**Port class:** B — the plugin is a stdlib wrapper over `GET` calls to `https://api.nextdns.io`; Claude can issue the same requests with curl.
+**Port class:** B · the plugin is a stdlib wrapper over `GET` calls to `https://api.nextdns.io`; Claude can issue the same requests with curl.
 
 ## What the Hermes plugin does
 Per plugin.yaml and `tools.py`, it registers four read-only tools, `nextdns_logs`, `nextdns_blocked`, `nextdns_analytics`, `nextdns_profile`, plus a `/nextdns` slash command and a dashboard tab. Every call is a `GET` against `_BASE = "https://api.nextdns.io"` with headers `X-Api-Key`, a custom `User-Agent` (NextDNS rejects Python's default with 403) and `Accept: application/json`. Settings resolve from `$HERMES_HOME/nextdns_settings.json`, then env (`NEXTDNS_API_KEY`, `NEXTDNS_PROFILE_ID`). Limits are floored at 10 (the API rejects less with 400), logs are capped at 200 rows per call, and device names are resolved to ids through `/profiles/{id}/analytics/devices`.

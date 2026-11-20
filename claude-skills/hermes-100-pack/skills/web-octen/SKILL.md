@@ -5,7 +5,7 @@ description: Search the web with Octen (results carry query-focused highlights) 
 # Octen Web Search and Extract
 
 **Hermes original:** https://github.com/Octen-Team/hermes-octen-plugin @ 3af8a3f · tier: community · category: web · license: MIT
-**Port class:** B — two documented REST calls (`/search`, `/extract`) that Claude can make directly; an MCP server also exists.
+**Port class:** B · two documented REST calls (`/search`, `/extract`) that Claude can make directly; an MCP server also exists.
 
 ## What the Hermes plugin does
 Registers an `octen` web-search provider (`provides_web_providers: [octen]`) behind Hermes' existing `web_search` and `web_extract` tools. Search calls `POST https://api.octen.ai/search` with highlights enabled and full content disabled; extract calls `POST https://api.octen.ai/extract` in batches of at most 20 URLs. It adds no tool names of its own.

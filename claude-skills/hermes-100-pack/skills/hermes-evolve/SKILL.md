@@ -5,7 +5,7 @@ description: Reference card for the Hermes hermes-evolve plugin, which added a "
 # Hermes Evolve (reference card)
 
 **Hermes original:** https://github.com/nuffin/hermes-evolve @ 941c0b1 · tier: community · category: general · license: no LICENSE file found (README states MIT, but the checkout has no LICENSE file; catalog row lists no license; plugin is no longer in the live catalog)
-**Port class:** D — Hermes self-management: it reaches into Hermes's module registry, tool cache and session database.
+**Port class:** D · Hermes self-management: it reaches into Hermes's module registry, tool cache and session database.
 
 ## What the Hermes plugin does
 Registers one slash command, `/evolve` (plugin.yaml declares no tools or hooks). Per `__init__.py`, `/evolve status` lists loaded plugin modules under `~/.hermes/plugins/` and the bundled `plugins/` directory and flags files modified in the last hour. `/evolve now` re-executes each loaded plugin module in place with `importlib`, calls `hermes_cli.plugins.discover_plugins(force=True)` to re-run every plugin's `register(ctx)`, clears `model_tools._tool_defs_cache` and bumps `registry._generation`, then opens Hermes's `state.db` with sqlite3 and nulls `sessions.system_prompt` / `system_prompt_hash` (deleting orphaned `system_prompts` rows) so every active session rebuilds its system prompt on the next turn without losing history.

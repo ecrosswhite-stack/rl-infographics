@@ -5,7 +5,7 @@ description: Reference card only. Describes hermes-resetwatch, a Hermes Desktop 
 # Resetwatch (reference card)
 
 **Hermes original:** https://github.com/Adolanium/hermes-resetwatch @ 3be7832 (subdir `catalog`) · tier: community · category: desktop · license: MIT
-**Port class:** D — an Electron renderer page (`desktop/plugin.js`) plus a probe script executed through Hermes Desktop's `shell.exec` and gateway JSON-RPC; Claude has no desktop plugin surface or gateway RPCs to host it.
+**Port class:** D · an Electron renderer page (`desktop/plugin.js`) plus a probe script executed through Hermes Desktop's `shell.exec` and gateway JSON-RPC; Claude has no desktop plugin surface or gateway RPCs to host it.
 
 ## What the Hermes plugin does
 Standalone Hermes Desktop plugin with no tools, hooks or middleware (`register()` is empty). `desktop/plugin.js` adds a "Resetwatch" sidebar page with live quota cards and manual reset clocks. Numbers come from Hermes gateway RPCs (`usage.bars`, `subscription.state`, `account.usage`) and from `desktop/probe.py`, which reads local CLI/app logins (for example `$HERMES_HOME/auth.json`, `~/.claude`, `~/.codex`, Cursor, Kimi, Grok CLIs) and env keys (`DEEPSEEK_API_KEY`, `OPENCODE_GO_API_KEY`, `OLLAMA_API_KEY`, `MINIMAX_API_KEY`, `NOVITA_API_KEY`, `DEEPINFRA_API_KEY`, `AI_GATEWAY_API_KEY`, `COMMANDCODE_API_KEY`, `KIMI_API_KEY`, `ZAI_API_KEY`, `GLM_API_KEY`) to call each vendor's usage endpoint (e.g. `https://api.anthropic.com/api/oauth/usage`, `https://api.deepseek.com/user/balance`, `https://ollama.com/api/usage` per `probe.py`). Results are cached for 5 minutes under `$HERMES_HOME/cache/resetwatch`. The README warns that for Kimi and Grok the probe may refresh and rewrite OAuth tokens.

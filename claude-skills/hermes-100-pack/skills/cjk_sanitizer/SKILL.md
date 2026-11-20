@@ -5,7 +5,7 @@ description: Strip stray Chinese (CJK unified ideographs, extension A, radicals,
 # CJK Sanitizer
 
 **Hermes original:** https://github.com/evanyudis/cjk_sanitizer @ 47d2a95 · tier: community · category: general · license: MIT
-**Port class:** C — the regex cleanup is reproducible on any text or file, but the automatic `transform_llm_output` hook that rewrote every model reply has no Claude equivalent.
+**Port class:** C · the regex cleanup is reproducible on any text or file, but the automatic `transform_llm_output` hook that rewrote every model reply has no Claude equivalent.
 
 ## What the Hermes plugin does
 Registers one hook, `transform_llm_output`, that runs on every LLM response. It removes runs of characters in the ranges U+2E80-2EFF, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF (CJK) and U+0400-04FF (Cyrillic), collapses doubled spaces and 3+ newlines, and returns the cleaned text (or `None` when nothing changed). Hangul and Kana ranges are deliberately left alone. It registers no tools and reads no env vars. The README notes the hook always runs; prompt-based skipping was planned, not implemented.

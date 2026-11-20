@@ -5,7 +5,7 @@ description: Reference card only. Describes the Hermes Tag plugin, a Feishu/Lark
 # Hermes Tag (Feishu context-selection layer)
 
 **Hermes original:** https://github.com/DanielLi202/hermes-tag @ 250785b · tier: community · category: platform · license: MIT
-**Port class:** D — it is a Hermes gateway platform override (Feishu/Slack/DingTalk adapters) with its own SQLite memory store; nothing runs outside the Hermes gateway.
+**Port class:** D · it is a Hermes gateway platform override (Feishu/Slack/DingTalk adapters) with its own SQLite memory store; nothing runs outside the Hermes gateway.
 
 ## What the Hermes plugin does
 Overrides Hermes' built-in Feishu platform (and adds Slack and DingTalk bindings) so that an @-mentioned bot in an allowlisted group answers from bounded evidence selected by a `ContextSelector` with scopes `focused_reply`, `thread`, `deictic_recent` and `plain`, instead of full-history RAG. Tier-0 is a short-term per-chat buffer of all group messages (requires the sensitive Feishu scope `im:message.group_msg` and `require_mention: false`); Tier-1 is long-term memory built only from @-mention interactions, isolated per chat. Chat commands: `/tag status`, `/tag admin count|clear|disable|audit`, `/tag standing add|confirm|list|cancel|pause|enable`. Requires `FEISHU_APP_ID` and `FEISHU_APP_SECRET` (Slack: `SLACK_BOT_TOKEN`, `SLACK_APP_TOKEN`). Registers no agent tools; config lives under `platforms.feishu.extra.feishu_tag`.

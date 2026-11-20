@@ -5,7 +5,7 @@ description: Start, stop, check and configure the Mnemosyne Dashboard, a stdlib-
 # Mnemosyne Dashboard
 
 **Hermes original:** https://github.com/wysie/mnemosyne-dashboard @ a918e5e · tier: community · category: desktop · license: MIT
-**Port class:** C — the four tools only manage a local `server.py` process, which Claude can run; the data it shows comes from the Hermes Mnemosyne memory plugin, which this pack does not provide.
+**Port class:** C · the four tools only manage a local `server.py` process, which Claude can run; the data it shows comes from the Hermes Mnemosyne memory plugin, which this pack does not provide.
 
 ## What the Hermes plugin does
 Registers `mnemosyne_dashboard_start`, `mnemosyne_dashboard_stop`, `mnemosyne_dashboard_status`, `mnemosyne_dashboard_config` (no hooks). Start launches `python server.py --host H --port P --db PATH` detached, records pid and runtime JSON under `~/.hermes/plugin-data/mnemosyne-dashboard/`, and waits for `/api/auth/status` to answer. The server (ThreadingHTTPServer, no external JS) opens the SQLite DB read-only, serves overview, Today digest, Context Bank, Constellation/Neural Map visualisers, search, timeline, graph/triples, consolidations, and optional password-gated maintenance (supersede, expire, importance) with backups and an `audit.jsonl`.

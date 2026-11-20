@@ -5,7 +5,7 @@ description: Scaffold, extend and bundle Hermes Agent plugins (plugin.yaml, __in
 # Hermes Plugin Generator
 
 **Hermes original:** https://github.com/iruzen-dono/hermes-plugin-gen @ 75899f9 · tier: community · category: tools · license: MIT
-**Port class:** B — the plugin is a pure-stdlib file generator for a documented directory layout; Claude can write the same files with its file tools.
+**Port class:** B · the plugin is a pure-stdlib file generator for a documented directory layout; Claude can write the same files with its file tools.
 
 ## What the Hermes plugin does
 Registers three tools: `plugin_scaffold` (create a full plugin directory from a description), `plugin_add_tool` (append a tool to an existing plugin: schema, handler, registration, manifest entry) and `plugin_add_skill` (write `skills/<name>/SKILL.md` and register it). Generated handlers contain `TODO` stubs; the plugin refuses to overwrite an existing plugin. It ships a bundled skill (in French) describing when and how to use the tools.

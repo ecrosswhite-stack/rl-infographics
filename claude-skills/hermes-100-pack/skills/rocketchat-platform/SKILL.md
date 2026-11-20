@@ -5,7 +5,7 @@ description: Read and write a self-hosted Rocket.Chat workspace through its REST
 # Rocket.Chat
 
 **Hermes original:** https://github.com/HalfbitStudio/hermes-plugin-rocketchat @ 989a04c · tier: community · category: platform · license: MIT
-**Port class:** C — the ten agent tools are REST v1 calls Claude can reproduce; the inbound DDP WebSocket gateway, mention gating, thread reply mode and cron delivery depend on the Hermes gateway.
+**Port class:** C · the ten agent tools are REST v1 calls Claude can reproduce; the inbound DDP WebSocket gateway, mention gating, thread reply mode and cron delivery depend on the Hermes gateway.
 
 ## What the Hermes plugin does
 A platform adapter that listens on Rocket.Chat's Realtime (DDP) WebSocket (`stream-room-messages` / `__my_messages__`) and replies through REST v1. It registers tools `rocketchat_list_channels`, `rocketchat_search_messages`, `rocketchat_get_history`, `rocketchat_get_thread`, `rocketchat_get_permalink` (read) and `rocketchat_create_channel`, `rocketchat_post`, `rocketchat_send_file`, `rocketchat_dm`, `rocketchat_delegate` (write). Write tools are off until `ROCKETCHAT_AGENT_WRITE_TOOLS=true`; cross-room reads need both `ROCKETCHAT_RETRIEVAL_ALLOWED_ROOMS` and `ROCKETCHAT_RETRIEVAL_TRUSTED_USERS`.

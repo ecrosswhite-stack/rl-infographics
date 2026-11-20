@@ -5,7 +5,7 @@ description: Reference card for the Hermes Desktop plugin "Nous Portal Pricing" 
 # Nous Portal Pricing (reference card)
 
 **Hermes original:** https://github.com/Adolanium/hermes-nous-prices @ 94f9943 (subdir `catalog`) · tier: community · category: desktop · license: no LICENSE file found
-**Port class:** D — a Hermes Desktop UI plugin whose data comes from Hermes-internal Python modules (`hermes_cli.inventory`, `agent.billing_view`) and the Desktop plugin SDK; there is no external API Claude could call.
+**Port class:** D · a Hermes Desktop UI plugin whose data comes from Hermes-internal Python modules (`hermes_cli.inventory`, `agent.billing_view`) and the Desktop plugin SDK; there is no external API Claude could call.
 
 ## What the Hermes plugin does
 Adds a `/nous-prices` page, sidebar entry, command-palette command, `Ctrl/Cmd+Alt+P` keybinding and a status-bar price chip to Hermes Desktop. It lists Nous Portal models with input and output prices in USD per million tokens, cached-read pricing, sale percentages, free models, lab grouping, search and filters, shows the signed-in account's plan and spendable balance, and lets the user set the default model for the active profile. A gateway-side FastAPI companion (`dashboard/plugin_api.py`) exposes `/health`, `/catalog`, `/billing` and `/default-model`, each of which imports Hermes internals (`build_model_options_payload`, `build_billing_state`, `load_picker_context`). It registers no agent tools and requires no environment variables; prices are cached locally per profile and refreshed every five minutes.

@@ -5,7 +5,7 @@ description: Run live web searches through the Brave Search API, replicating the
 # Brave Search
 
 **Hermes original:** https://github.com/rabilrbl/hermes-brave-search-plugin @ 4134cbe · tier: community · category: web · license: MIT
-**Port class:** B — the plugin is a thin wrapper over one Brave Search REST endpoint that Claude can call with curl or Python.
+**Port class:** B · the plugin is a thin wrapper over one Brave Search REST endpoint that Claude can call with curl or Python.
 
 ## What the Hermes plugin does
 Registers one tool, `brave_web_search`, in the `brave-search` toolset. Per the plugin source (tools.py) the handler sends GET `https://api.search.brave.com/res/v1/web/search` with header `X-Subscription-Token: $BRAVE_API_KEY`, forwards `q`, `count` (clamped 1-20, default 10), `safesearch` (default `moderate`) and the optional `country`, `search_lang`, `freshness` parameters, with a 20 second timeout and no retry. It returns `{query, count, results[]}` where each result carries title, url, description (HTML stripped), age, language, source (`profile.long_name`) and display_url. Requires `BRAVE_API_KEY` (plugin.yaml).

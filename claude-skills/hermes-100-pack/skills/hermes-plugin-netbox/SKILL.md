@@ -1,11 +1,11 @@
 ---
 name: hermes-plugin-netbox
-description: Read and change objects in a NetBox DCIM/IPAM instance through its REST API using the user's NETBOX_URL and NETBOX_TOKEN, following the plan, review, apply, roll back discipline of the Hermes netbox plugin: never write without first showing a field-level diff and getting a yes. Use when the user asks to look up, add, move, rename, retire, re-IP or bulk-edit devices, interfaces, IP addresses, prefixes, sites, racks, circuits or VMs in NetBox, says "query netbox", "plan this netbox change", "apply the plan", or "roll back that netbox change".
+description: "Read and change objects in a NetBox DCIM/IPAM instance through its REST API using the user's NETBOX_URL and NETBOX_TOKEN, following the plan, review, apply, roll back discipline of the Hermes netbox plugin: never write without first showing a field-level diff and getting a yes. Use when the user asks to look up, add, move, rename, retire, re-IP or bulk-edit devices, interfaces, IP addresses, prefixes, sites, racks, circuits or VMs in NetBox, says \"query netbox\", \"plan this netbox change\", \"apply the plan\", or \"roll back that netbox change\"."
 ---
 # NetBox Change Management
 
 **Hermes original:** https://github.com/andrewvieyra/hermes-plugin-netbox @ 8ff1fc4 · tier: community · category: tools · license: MIT
-**Port class:** B — a REST client for NetBox plus plan/journal logic; Claude can call the same API with curl and keep the plan and journal as JSON files itself.
+**Port class:** B · a REST client for NetBox plus plan/journal logic; Claude can call the same API with curl and keep the plan and journal as JSON files itself.
 
 ## What the Hermes plugin does
 Registers five tools: `netbox_query` (list with filters, fetch by id, `status`), `netbox_plan` (validate operations, resolve `match` to one object, diff desired vs live, save a plan with each object's `last_updated`), `netbox_apply` (re-check `last_updated`, POST/PATCH/DELETE step by step, journal an inverse before the next step, auto-rollback on failure), `netbox_rollback` (replay the journal newest first) and `netbox_plans`. Plans live under `~/.hermes/plugin-data/netbox/plans/`, events in `audit.jsonl`. Settings: `allow_delete` (default false), `max_operations` 200, `max_plan_age_hours` 24, `write_mode` full/operator_only/read_only. It ships a `netbox-workflow` skill (copied to `references/`).

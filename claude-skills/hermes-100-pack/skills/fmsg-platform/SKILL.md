@@ -5,7 +5,7 @@ description: Send and read fmsg messages (the federated, threaded @user@domain m
 # fmsg
 
 **Hermes original:** https://github.com/markmnl/hermes-fmsg @ 562f45a · tier: community · category: platform · license: MIT
-**Port class:** C — outbound sends and inbox reads are documented JSON REST calls Claude can make; the WebSocket inbound loop, thread-to-session mapping and allowlist gating live in the Hermes gateway.
+**Port class:** C · outbound sends and inbox reads are documented JSON REST calls Claude can make; the WebSocket inbound loop, thread-to-session mapping and allowlist gating live in the Hermes gateway.
 
 ## What the Hermes plugin does
 A platform adapter for fmsg. It exchanges an API key for a short-lived JWT (`POST /fmsg/token`), streams inbound events over `/fmsg/ws`, maps fmsg roots and branches to Hermes sessions, and sends replies via the REST routes (create draft, attach, send, mark read). Access is deny-by-default via `FMSG_ALLOWED_USERS`. No tools or hooks are registered; sending from Hermes uses `hermes send --to fmsg` or the `send_message` tool.

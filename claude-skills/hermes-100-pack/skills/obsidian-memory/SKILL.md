@@ -1,11 +1,11 @@
 ---
 name: obsidian-memory
-description: Browse, search, edit and map the links of an Obsidian vault from Claude Code or Cowork, ported from the Hermes obsidian-memory dashboard plugin. Use it when the user mentions their Obsidian vault or notes: "find the note about X in my vault", "list notes tagged #project", "which notes link to this one", "show backlinks", "edit my daily note", "add a section to this note", "draw the link graph of my vault", or when OBSIDIAN_VAULT_PATH is set. The force-directed graph pane in the Hermes dashboard is UI-only; Claude produces an artifact or a list instead.
+description: "Browse, search, edit and map the links of an Obsidian vault from Claude Code or Cowork, ported from the Hermes obsidian-memory dashboard plugin. Use it when the user mentions their Obsidian vault or notes: \"find the note about X in my vault\", \"list notes tagged #project\", \"which notes link to this one\", \"show backlinks\", \"edit my daily note\", \"add a section to this note\", \"draw the link graph of my vault\", or when OBSIDIAN_VAULT_PATH is set. The force-directed graph pane in the Hermes dashboard is UI-only; Claude produces an artifact or a list instead."
 ---
 # Obsidian Memory
 
 **Hermes original:** https://github.com/kyssta-exe/hermes-obsidian-memory @ 1123998 · tier: community · category: desktop · license: no LICENSE file found (plugin.yaml states MIT, no LICENSE file in the checkout)
-**Port class:** C — everything the FastAPI backend does is plain filesystem work on markdown files that Claude can do directly; the React dashboard tab with the force-directed graph is Hermes UI and is not reproduced.
+**Port class:** C · everything the FastAPI backend does is plain filesystem work on markdown files that Claude can do directly; the React dashboard tab with the force-directed graph is Hermes UI and is not reproduced.
 
 ## What the Hermes plugin does
 Adds an "Obsidian" tab to the Hermes dashboard (`/obsidian`). Its backend (`dashboard/api.py`) discovers vaults, scans every `*.md` under a vault, extracts `#tags` and front-matter `tags:` lists, extracts `[[wikilinks]]` (dropping the `|alias` part), computes backlinks, builds graph nodes and edges, renders markdown with code blocks, tables, callouts and checkboxes, and lets the user edit a note in place with save/cancel. Multi-vault switching, name search and folder or tag filters are included. It registers no agent tools and no hooks; the only setting is `OBSIDIAN_VAULT_PATH`.

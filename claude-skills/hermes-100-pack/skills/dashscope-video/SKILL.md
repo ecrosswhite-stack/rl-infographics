@@ -5,7 +5,7 @@ description: Generate short videos with Alibaba Cloud DashScope (Qwen Cloud / Mo
 # DashScope Video (HappyHorse 1.1)
 
 **Hermes original:** https://github.com/rriggs/hermes-plugin-dashscope-video @ 229b5c9 · tier: community · category: tools · license: MIT
-**Port class:** B — the plugin is a thin REST client over the public DashScope async task API, which Claude can call from bash or Python.
+**Port class:** B · the plugin is a thin REST client over the public DashScope async task API, which Claude can call from bash or Python.
 
 ## What the Hermes plugin does
 Registers a `VideoGenProvider` named `dashscope` behind Hermes's generic `video_generate` tool (no tools of its own are listed in the catalog). Per the plugin source it submits an async video-synthesis task, polls the task until it reaches a terminal state, then downloads the resulting video because DashScope output URLs expire. It auto-routes to `happyhorse-1.1-t2v` (prompt only), `happyhorse-1.1-i2v` (prompt + `image_url`), or `happyhorse-1.1-r2v` (prompt + one reference image). Local image paths are inlined as base64 data URIs (max 10 MB).

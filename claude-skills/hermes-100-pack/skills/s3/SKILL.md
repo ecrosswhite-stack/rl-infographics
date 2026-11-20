@@ -5,7 +5,7 @@ description: Back up files or directory trees to any S3-compatible object store 
 # S3 backup and restore
 
 **Hermes original:** https://github.com/lagoon-labs/hermes-s3-plugin @ 3d1514e · tier: community · category: tools · license: MIT
-**Port class:** B — a boto3 wrapper configured entirely by env vars; Claude can run the same boto3 calls (or the aws CLI) directly.
+**Port class:** B · a boto3 wrapper configured entirely by env vars; Claude can run the same boto3 calls (or the aws CLI) directly.
 
 ## What the Hermes plugin does
 Registers four tools in toolset `s3`: `s3-push` (args `src|local`, `dst|remote`, `rule`, `force`), `s3-pull` (`src|remote`, `dst|local`, `rule`), `s3-ls` (`prefix`, `rule`), `s3-rm` (`key` or `prefix`, `rule`, `recursive`, `confirm`), plus a `hermes s3 push|pull|ls|rm` CLI. Config comes from `S3_BACKUP_ENDPOINT` (omit for AWS), `S3_BACKUP_REGION`, `S3_BACKUP_BUCKET`, `S3_BACKUP_ACCESS_KEY`, `S3_BACKUP_SECRET_KEY`, `S3_BACKUP_RULES` (default `~/.hermes/s3-backup.rules.yaml`). Named rules supply `prefix` (with `{date}`, `{ts}`, `{year}`, `{month}`, `{day}` UTC placeholders) and an optional relative `source`. Push skips objects that already exist unless `force`; pull validates destination paths including symlink resolution; rm requires `confirm` and, for a prefix, `recursive`. All results are JSON (`{"ok": true, ...}`).

@@ -5,7 +5,7 @@ description: Scan a git diff for the Hermes diff-review plugin's six lint checks
 # Diff Review
 
 **Hermes original:** https://github.com/sprmn24/hermes-plugin-diff-review @ f238271 · tier: community · category: tools · license: no LICENSE file found (README text says MIT)
-**Port class:** B — the tool is `git diff` plus six regexes over added lines; Claude runs the same commands itself.
+**Port class:** B · the tool is `git diff` plus six regexes over added lines; Claude runs the same commands itself.
 
 ## What the Hermes plugin does
 Registers one tool, `diff_review` (toolset `diff_review`), with optional arguments `base` (default `HEAD`), `target` (e.g. `origin/main`) and `diff_text` (raw unified diff; skips git). It runs `git diff <base> [<target>]` with a 30 s timeout, parses `diff --git` / `+++ b/` / `@@` headers to track file paths and line numbers, counts added and removed lines per file, and flags each added line matching one of six patterns. Output is JSON: `status`, `files_changed`, `total_added`, `total_removed`, `files[]`, `warnings[] {file,line,issue}`, `warning_count`. Requires only git; no env vars.

@@ -5,7 +5,7 @@ description: Reference card for the Hermes "cashew" memory-provider plugin (pers
 # Cashew thought-graph memory (reference card)
 
 **Hermes original:** https://github.com/magnus919/hermes-cashew @ d89e59e · tier: community · category: memory · license: Apache-2.0
-**Port class:** D — it is a Hermes memory provider wired into Hermes session hooks, auxiliary LLM roles and the Hermes cron scheduler; Claude has no plugin slot for a memory provider.
+**Port class:** D · it is a Hermes memory provider wired into Hermes session hooks, auxiliary LLM roles and the Hermes cron scheduler; Claude has no plugin slot for a memory provider.
 
 ## What the Hermes plugin does
 Cashew registers a `CashewMemoryProvider` with Hermes (`ctx.register_memory_provider`). It stores conversation knowledge in a local SQLite "thought graph" (`$HERMES_HOME/cashew/brain.db`) using `cashew-brain`, `sentence-transformers` embeddings (default model `thenlper/gte-large`, 1024-dim) and `sqlite-vec` similarity search. It exposes two LLM tools, `cashew_query` (semantic search with `domain`, `tag`, `exclude_tags` filters) and `cashew_extract` (persist a turn), prefetches graph context into the system prompt at session start, and hooks `on_session_end` and `on_pre_compress` to extract insights. Graph consolidation ("sleep cycle") runs as a Hermes `no_agent` cron job (default `every 12h`). LLM-powered extraction uses the Hermes `auxiliary.memory` role when configured, otherwise heuristic extraction only. Configuration lives in `~/.hermes/cashew.json`, overridable with `CASHEW_*` environment variables.

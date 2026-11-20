@@ -5,7 +5,7 @@ description: Read and write memories in a self-hosted Metronix Memory server ove
 # Metronix Memory (REST access)
 
 **Hermes original:** https://github.com/mtrnix/hermes-memory-metronix @ 55634c1 · tier: community · category: memory · license: Apache-2.0
-**Port class:** C — the HTTP calls in `plugin/metronix/client.py` are reproducible with curl; the `MemoryProvider` lifecycle (prefetch on every turn, write-through of `memory(action="add")`, turn sync) is Hermes-internal.
+**Port class:** C · the HTTP calls in `plugin/metronix/client.py` are reproducible with curl; the `MemoryProvider` lifecycle (prefetch on every turn, write-through of `memory(action="add")`, turn sync) is Hermes-internal.
 
 ## What the Hermes plugin does
 Registers a Hermes `MemoryProvider` named `metronix` (no tools listed). Per the README it prefetches relevant records before each turn via memory search, mirrors Hermes memory writes into Metronix, optionally stores completed turns as session-scoped records (`sync_turns`, on by default), and authenticates with a REST JWT or `mtk_...` personal key, falling back to email/password login. Config comes from `$HERMES_HOME/metronix.json` plus env vars; a `hermes-metronix-setup` command installs it.

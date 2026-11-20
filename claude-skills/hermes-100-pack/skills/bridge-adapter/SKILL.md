@@ -5,7 +5,7 @@ description: Reference card only. Describes the Hermes "bridge-adapter" gateway 
 # Bridge Adapter (reference card)
 
 **Hermes original:** https://github.com/Kesuek/hermes-bridge-adapter @ 406a53d · tier: community · category: platform · license: MIT
-**Port class:** D — it is a Hermes Gateway platform adapter; Claude has no gateway process, inbox poller or MessageEvent dispatcher to plug into.
+**Port class:** D · it is a Hermes Gateway platform adapter; Claude has no gateway process, inbox poller or MessageEvent dispatcher to plug into.
 
 ## What the Hermes plugin does
 Per the README, the adapter is a `kind: platform` plugin for the Hermes Gateway. Instead of each messaging platform connecting to the Gateway directly, an external "wrapper" script exchanges JSON files with the adapter in `BRIDGE_DIR`: wrappers write `inbox/<bridge>/` and `status/<bridge>/`, the adapter polls them and writes replies to `outbox/<bridge>/`, with attachments under `media/<bridge>/{incoming,outgoing}/`. Bridges self-register by dropping a manifest in `registry/<bridge>.yaml` (presence = registered, remove = unregistered). It also implements "Unified Threads": several bridges sharing one agent session, cross-bridge reply chains, identity claims and message relay. It registers no agent tools (`cat_tools` is empty); `register()` in `adapter.py` registers the platform adapter class with the Hermes plugin context.

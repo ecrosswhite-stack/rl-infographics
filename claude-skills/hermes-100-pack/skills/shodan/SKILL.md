@@ -5,7 +5,7 @@ description: Query Shodan.io the way the Hermes shodan plugin does, with the use
 # Shodan
 
 **Hermes original:** https://github.com/Adolanium/hermes-plugin-shodan @ c7d5621 · tier: community · category: tools · license: MIT
-**Port class:** B — every tool is a flat HTTPS GET/POST against Shodan's public APIs that Claude can issue with curl; the credit ledger, caching and response shaping are plugin conveniences reproduced as working rules.
+**Port class:** B · every tool is a flat HTTPS GET/POST against Shodan's public APIs that Claude can issue with curl; the credit ledger, caching and response shaping are plugin conveniences reproduced as working rules.
 
 ## What the Hermes plugin does
 Registers twelve tools in the `shodan` toolset: core `shodan_host`, `shodan_search`, `shodan_count`, `shodan_dns`, `shodan_cve`, `shodan_account`, `shodan_meta`, and full-profile `shodan_scan`, `shodan_alert`, `shodan_exploits`, `shodan_query`, `shodan_trends`; hooks `on_session_start` and `on_session_reset` reset a per-session credit budget (default 50 query credits, 0 scan credits). Per client.py the API families are `https://api.shodan.io` (REST, `?key=`), `https://exploits.shodan.io/api`, `https://trends.shodan.io`, and the keyless `https://internetdb.shodan.io` and `https://cvedb.shodan.io`. It enforces 1 request per second, retries 429/5xx, caches free idempotent lookups, shapes huge host JSON down to identity plus one line per service, and ships three skills (query-syntax, recon, monitoring).

@@ -5,7 +5,7 @@ description: Route a question about local operational knowledge (custom skills a
 # Local Knowledge Router
 
 **Hermes original:** https://github.com/stepanov1975/hermes-local-knowledge @ c13a1a3 · tier: community · category: tools · license: MIT
-**Port class:** C — the routing workflow (search, fetch, inspect, verify freshness) is reproducible with Claude's file tools; the SQLite index, hooks, telemetry, implicit feedback and model-backed tool-OKF generation are Hermes-internal.
+**Port class:** C · the routing workflow (search, fetch, inspect, verify freshness) is reproducible with Claude's file tools; the SQLite index, hooks, telemetry, implicit feedback and model-backed tool-OKF generation are Hermes-internal.
 
 ## What the Hermes plugin does
 Registers five tools in toolset `local_knowledge`: `knowledge_search` (find artifacts by intent, optional `artifact_type`, `rebuild`), `knowledge_get` (one artifact by ID, optional neighbors), `knowledge_neighbors` (graph edges), `knowledge_feedback` (`useful`, `missing`, `stale`, `wrong_artifact`), `knowledge_usage_report`. It registers hooks `pre_llm_call`, `post_tool_call`, `on_session_end`, `on_session_finalize` to inject a one-line prompt hint and learn implicit feedback. It indexes whole artifacts, not chunks: `SKILL.md` files, skill support docs, scripts, markdown runbooks/memory/docs under `source_root`, `$HERMES_HOME/cron/jobs.json`, `mcp_servers` in `$HERMES_HOME/config.yaml`, and generated `tool_okf` notes. Automatic OKF generation calls the active model and costs tokens (README disclosure). A standalone CLI `python -m hermes_local_knowledge.cli build|search|get|neighbors|evaluate|doctor` ships in the package.

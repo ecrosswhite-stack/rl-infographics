@@ -5,7 +5,7 @@ description: Fetch, discover and summarize RSS, Atom and JSON Feed sources with 
 # Hermes Newswire (feed engine)
 
 **Hermes original:** https://github.com/tony-simons-aiowa/hermes-newswire @ deccdc4 · tier: community · category: desktop · license: MIT
-**Port class:** C — the keyless feed fetch, parse, discovery and OPML handling are reproducible; the Hermes Desktop ticker strip, `/newswire` page, SQLite cache and refresh loop are not.
+**Port class:** C · the keyless feed fetch, parse, discovery and OPML handling are reproducible; the Hermes Desktop ticker strip, `/newswire` page, SQLite cache and refresh loop are not.
 
 ## What the Hermes plugin does
 A unified Hermes Desktop plugin: `dashboard/plugin_api.py` is a FastAPI router mounted at `/api/plugins/hermes-newswire/` that fetches RSS 2.0, RSS 1.0/RDF, Atom and JSON Feed sources, discovers feeds from a site URL, searches feeds, stores articles in SQLite, and serves routes such as `/sources`, `/articles`, `/refresh-all`, `/discover`, `/search`, `/preview`, `/opml/import`, `/opml/export`. `desktop/plugin.js` renders a scrolling headline strip above the statusbar plus a Newswire page. It registers no agent tools or hooks (`register()` is a no-op) and uses no API keys or model tokens.

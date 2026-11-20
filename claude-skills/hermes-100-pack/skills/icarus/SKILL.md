@@ -5,7 +5,7 @@ description: Shared agent memory as markdown notes with YAML frontmatter in a FA
 # Icarus: Fabric Memory and Replacement Models
 
 **Hermes original:** https://github.com/esaradev/icarus-plugin @ e46cba3 · tier: community · category: memory · license: MIT
-**Port class:** C — the note store (plain markdown files) and the Together AI calls are reproducible from the filesystem and curl; the automatic hooks and the model switch that rewrites Hermes's `.env` depend on the Hermes runtime.
+**Port class:** C · the note store (plain markdown files) and the Together AI calls are reproducible from the filesystem and curl; the automatic hooks and the model switch that rewrites Hermes's `.env` depend on the Hermes runtime.
 
 ## What the Hermes plugin does
 Registers 16 tools in the `fabric` toolset: memory (`fabric_recall`, `fabric_write`, `fabric_search`, `fabric_pending`, `fabric_curate`), training (`fabric_export`, `fabric_train`, `fabric_train_status`), replacement models (`fabric_models`, `fabric_eval`, `fabric_switch_model`, `fabric_rollback_model`) and operations (`fabric_brief`, `fabric_telemetry`, `fabric_report`, `fabric_init_obsidian`); and 4 hooks (`on_session_start` loads SOUL and pending handoffs, `pre_llm_call` injects memories on topic change, `post_llm_call` captures decisions, `on_session_end` scores the session). Entries are `.md` files in `FABRIC_DIR` (default `~/fabric`). Training uploads JSONL to Together AI and starts a fine-tune; switching rewrites `LLM_MODEL`, `OPENAI_BASE_URL=https://api.together.xyz/v1` and `OPENAI_API_KEY` in `$HERMES_HOME/.env`.

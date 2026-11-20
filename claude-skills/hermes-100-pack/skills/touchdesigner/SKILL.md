@@ -1,11 +1,11 @@
 ---
 name: touchdesigner
-description: Control a running TouchDesigner session from Claude through the twozero MCP server (Streamable HTTP on http://127.0.0.1:40404/mcp): create operators, set parameters, wire networks, run Python inside TD, build audio-reactive and GLSL visuals, record video. Use when the user mentions TouchDesigner, TD, twozero, TOPs/CHOPs/SOPs, "make a generative visual", "audio-reactive shader", "projection mapping", or asks to connect TouchDesigner to Claude. Requires TouchDesigner (Windows/macOS) with the twozero.tox installed.
+description: "Control a running TouchDesigner session from Claude through the twozero MCP server (Streamable HTTP on http://127.0.0.1:40404/mcp): create operators, set parameters, wire networks, run Python inside TD, build audio-reactive and GLSL visuals, record video. Use when the user mentions TouchDesigner, TD, twozero, TOPs/CHOPs/SOPs, \"make a generative visual\", \"audio-reactive shader\", \"projection mapping\", or asks to connect TouchDesigner to Claude. Requires TouchDesigner (Windows/macOS) with the twozero.tox installed."
 ---
 # TouchDesigner (twozero MCP)
 
 **Hermes original:** https://github.com/NousResearch/hermes-plugin-touchdesigner @ 88a7a78 · tier: official · category: tools · license: MIT
-**Port class:** A — a portable Agent Plugins v1 package: `mcp.json` with one streamable-http server plus a bundled `touchdesigner-mcp` skill; both carry over to Claude's MCP configuration.
+**Port class:** A · a portable Agent Plugins v1 package: `mcp.json` with one streamable-http server plus a bundled `touchdesigner-mcp` skill; both carry over to Claude's MCP configuration.
 
 ## What the Hermes plugin does
 Registers the twozero MCP server (`td`, `http://127.0.0.1:40404/mcp`) for every Hermes session and ships `skills/touchdesigner-mcp/` (workflow rules, 21 reference files on operators, GLSL, audio-reactive chains, instancing, pitfalls, and a `scripts/setup.sh` health check). The server exposes 36 `td_*` tools (per the skill): core `td_execute_python`, `td_create_operator`, `td_set_operator_pars`, `td_get_operator_info`, `td_get_network`, `td_get_errors`, `td_get_par_info`, `td_get_hints`, `td_get_focus`; DAT/CHOP read/write; screenshots; search; perf; plus opt-in desktop input automation and admin tools. No Hermes tools or hooks of its own.

@@ -1,11 +1,11 @@
 ---
 name: hermes-ssh
-description: Reference card for the Hermes SSH plugin, a Hermes Desktop UI page ("Connections") that saves SSH machines and opens remote Hermes workspaces. Not a working skill. Read it only when someone asks what hermes-ssh did, how it compares to Claude, or how to reach a remote machine from Claude instead (answer: run ssh in Claude Code's shell).
+description: "Reference card for the Hermes SSH plugin, a Hermes Desktop UI page (\"Connections\") that saves SSH machines and opens remote Hermes workspaces. Not a working skill. Read it only when someone asks what hermes-ssh did, how it compares to Claude, or how to reach a remote machine from Claude instead (answer: run ssh in Claude Code's shell)."
 ---
 # Hermes SSH (reference card)
 
 **Hermes original:** https://github.com/Adolanium/hermes-ssh @ 02c6b34 · tier: community · category: desktop · license: no LICENSE file found
-**Port class:** D — a Hermes Desktop renderer plugin (`desktop/plugin.js`) with no agent tools, hooks or middleware; it drives Desktop gateway methods (`shell.exec`, `profiles.create`, `cli.exec`) that have no Claude counterpart.
+**Port class:** D · a Hermes Desktop renderer plugin (`desktop/plugin.js`) with no agent tools, hooks or middleware; it drives Desktop gateway methods (`shell.exec`, `profiles.create`, `cli.exec`) that have no Claude counterpart.
 
 ## What the Hermes plugin does
 Adds a "Connections" page and a `/ssh <machine>` command to Hermes Desktop. The user saves a machine (host, user, port, key path, remote folder), tests access, and opens a workspace; Hermes then creates a new profile and task whose terminal and file tools run on the remote machine through the stock Hermes SSH backend. Supports existing keys, the SSH agent, or generating an Ed25519 key; interactive passwords are not supported. The catalog package (`catalog/`) registers nothing on the agent side (`provides_tools: []`).

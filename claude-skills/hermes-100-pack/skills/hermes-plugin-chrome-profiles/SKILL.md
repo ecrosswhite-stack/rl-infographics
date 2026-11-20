@@ -5,7 +5,7 @@ description: Launch or reach a specific Chrome or Microsoft Edge profile with re
 # Chrome/Edge Profiles via CDP
 
 **Hermes original:** https://github.com/anpicasso/hermes-plugin-chrome-profiles @ 5b9c325 · tier: community · category: web · license: no LICENSE file found
-**Port class:** C — launching browsers with `--remote-debugging-port` and probing `/json/version` is plain shell work; the part that redirected Hermes' built-in browser tools through `BROWSER_CDP_URL` is Hermes-specific.
+**Port class:** C · launching browsers with `--remote-debugging-port` and probing `/json/version` is plain shell work; the part that redirected Hermes' built-in browser tools through `BROWSER_CDP_URL` is Hermes-specific.
 
 ## What the Hermes plugin does
 Registers one tool, `browser_profile(name)` (toolset `chrome_profiles`). It reads `config.yaml` next to the plugin (re-read on every call), where each profile is `type: local|remote`, `port`, and for Chrome `data_dir`, for Edge `browser_type: edge` plus `profile_directory`, or for remote `host`. Local profiles are launched if CDP is not already answering; remote profiles are only checked for reachability. On success it sets `BROWSER_CDP_URL=http://<host>:<port>` in the Hermes process and flushes Hermes browser sessions so later `browser_navigate`, `browser_click`, `browser_snapshot` calls use that browser. Called with no name it lists profiles with `active` and `reachable` flags. Launched PIDs are terminated at exit.

@@ -5,7 +5,7 @@ description: Generate videos with MiniMax Hailuo models (text-to-video, image-to
 # MiniMax (Hailuo) Video Generation
 
 **Hermes original:** https://github.com/rriggs/hermes-plugin-minimax-video @ 759bec0 · tier: community · category: tools · license: MIT
-**Port class:** B — the plugin wraps three MiniMax REST endpoints (submit, poll, retrieve) that Claude can drive from bash or Python.
+**Port class:** B · the plugin wraps three MiniMax REST endpoints (submit, poll, retrieve) that Claude can drive from bash or Python.
 
 ## What the Hermes plugin does
 Registers a `VideoGenProvider` named `minimax` (`kind: backend`) behind Hermes's `video_generate` tool. Per `__init__.py` it POSTs `{api}/v1/video_generation` with `{model, prompt, duration, resolution, prompt_optimizer?, first_frame_image?, subject_reference?}`, polls `GET {api}/v1/query/video_generation?task_id=` every 5 s for up to 600 s until `status` is `Success` or `Fail`, then calls `GET {api}/v1/files/retrieve?file_id=` to obtain `file.download_url` and downloads the MP4. Default `api` is `https://api.minimax.io`; the key is read from the env var named by `key_env` (plugin.yaml requires `MINIMAX_PAYG_KEY`; the code default is `MINIMAX_API_KEY`). Models listed: `MiniMax-Hailuo-2.3` (T2V, I2V), `MiniMax-Hailuo-2.3-Fast` (I2V), `MiniMax-Hailuo-02` (T2V, I2V), `S2V-01` (subject reference), plus older `T2V-01`, `T2V-01-Director`, `I2V-01`, `I2V-01-Director`, `I2V-01-live`.

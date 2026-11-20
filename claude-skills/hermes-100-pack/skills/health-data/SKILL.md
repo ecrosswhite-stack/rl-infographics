@@ -5,7 +5,7 @@ description: Answer personal health and daily-context questions (sleep, readines
 # Health Data (Oura + calendar context coach)
 
 **Hermes original:** https://github.com/Infinite-Labs-AI/hermes-health-apollo @ 9f2db67 · tier: community · category: tools · license: MIT
-**Port class:** C — the Oura REST pulls, the Google Calendar/Gmail context and the coaching rules are reproducible; the local SQLite store, feature engineering, analysis plans, `hermes health` CLI and 6-hourly sync cron are Hermes-internal.
+**Port class:** C · the Oura REST pulls, the Google Calendar/Gmail context and the coaching rules are reproducible; the local SQLite store, feature engineering, analysis plans, `hermes health` CLI and 6-hourly sync cron are Hermes-internal.
 
 ## What the Hermes plugin does
 A `standalone` plugin that syncs Oura data into `~/.hermes/health.db`, pulls redacted Google Calendar and Gmail metadata through the Hermes Google Workspace helper, and registers 11 tools: `health_query` (recent, date_range, stress_days, correlate, heart_rate, workouts, sessions, tags, coverage), `health_sync`, `health_log_food`, `health_calendar_peek`, `health_coverage`, `health_event_query`, `health_feature_query`, `health_analysis_catalog`, `health_analysis_plan`, `health_analyze`, `health_analysis_explain`. It adds a `/health` command family (`hermes health setup|connect|connect-google|sync|status|ask|uninstall`), a `health-data-sync` cron every 6 h, and two skills: `health-coach` (answering loop, correlation recipe, guardrails) and `health-visuals` (terminal-only visual patterns).

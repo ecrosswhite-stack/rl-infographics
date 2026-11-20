@@ -31,6 +31,14 @@ Each skill in `skills/<name>/SKILL.md` therefore records a **port class**:
 `data/port_status.jsonl` holds one row per plugin with class, env vars, verified packages and a
 confidence level. `index.html` renders the same data.
 
+**Result (100 plugins):** A direct port: 4 · B re-implementable: 30 · C partial: 33 · D not portable: 33.
+Confidence: high 49 · medium 43 · low 8. Upstream skill files copied under permissive licences: 48.
+
+How to read this honestly: 34 skills (A+B) give Claude the same capability through the same API, CLI or
+MCP server. 33 (C) reproduce part of it and spell out the rest. 33 (D) are Hermes Desktop UI mods,
+chat-gateway adapters or memory/model providers that have no counterpart outside the Hermes runtime;
+their SKILL.md is a reference card, written so it will not trigger on real tasks.
+
 ## Install
 
 ### Claude desktop app (claude.ai desktop) and claude.ai

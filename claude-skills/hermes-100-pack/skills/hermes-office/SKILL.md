@@ -5,7 +5,7 @@ description: Reference card for the Hermes hermes-office plugin, a Hermes Deskto
 # Hermes Office (reference card)
 
 **Hermes original:** https://github.com/Adolanium/hermes-office @ e1e0255 (subdir `catalog`) · tier: community · category: desktop · license: MIT
-**Port class:** D — a Hermes Desktop UI plugin (`desktop/plugin.js`, React via the Hermes Desktop SDK) with no agent tools, hooks or middleware.
+**Port class:** D · a Hermes Desktop UI plugin (`desktop/plugin.js`, React via the Hermes Desktop SDK) with no agent tools, hooks or middleware.
 
 ## What the Hermes plugin does
 The catalog package (`catalog/plugin.yaml`, `kind: standalone`, `provides_tools: []`, `provides_hooks: []`, `requires_env: []`) ships a single `desktop/plugin.js` that Hermes Desktop (Electron) loads; `catalog/__init__.py` registers nothing on the agent side. Per the repository README, the panel lists Bot Mode agents at desks, lets the user type a task and send it to a bot's existing Bot Chat via `host.openSession`, shows raised hands for approval or input requests (routing the user to the chat rather than answering), awards stars, parcels and pizza on confirmed completions, runs scripted scenes (wind-up mouse, iced carpet, lunch bell, UFO), stores per-bot personalities and furniture layout, and keeps a 60-record "Carpet Chronicle" of incidents without copying prompts or results. It requires a Desktop build with owner-routed `host.requestProfile`, `host.onEvent` and `host.openSession`.

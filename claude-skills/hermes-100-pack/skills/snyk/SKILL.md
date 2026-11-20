@@ -5,7 +5,7 @@ description: Scan code (SAST), dependencies (SCA), container images, infrastruct
 # Snyk security scanning
 
 **Hermes original:** https://github.com/NousResearch/hermes-plugin-snyk @ 2a41a07 · tier: official · category: tools · license: MIT
-**Port class:** A — a portable Agent Plugins v1 package (`plugin.json` + `mcp.json` + `skills/`); its MCP server entry drops into Claude's MCP configuration unchanged.
+**Port class:** A · a portable Agent Plugins v1 package (`plugin.json` + `mcp.json` + `skills/`); its MCP server entry drops into Claude's MCP configuration unchanged.
 
 ## What the Hermes plugin does
 Ships one MCP server entry, `sn`, launched as `npx -y snyk@1.1306.0 mcp -t stdio --profile full --DISABLE_ANALYTICS` with `SNYK_DISABLE_ANALYTICS=1`, plus the skill `snyk-security-scan`. The server (inside the Snyk CLI) exposes 13 tools: `snyk_code_scan`, `snyk_sca_scan`, `snyk_container_scan`, `snyk_iac_scan`, `snyk_sbom_scan`, `snyk_aibom`, `snyk_package_health_check`, `snyk_breakability_check`, `snyk_auth`, `snyk_trust`, `snyk_logout`, `snyk_version`, `snyk_send_feedback`. The plugin itself registers no Hermes tools or hooks.

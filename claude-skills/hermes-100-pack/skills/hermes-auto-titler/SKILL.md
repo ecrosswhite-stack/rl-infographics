@@ -5,7 +5,7 @@ description: Reference card only. Describes the Hermes plugin hermes-auto-titler
 # Hermes Auto Titler (reference card)
 
 **Hermes original:** https://github.com/Vocllum/hermes-auto-titler @ 307993c · tier: community · category: automation · license: Apache-2.0
-**Port class:** D — session-title maintenance wired into Hermes hooks, SessionDB and the host's auxiliary `title_generation` task; Claude exposes none of these surfaces to a skill.
+**Port class:** D · session-title maintenance wired into Hermes hooks, SessionDB and the host's auxiliary `title_generation` task; Claude exposes none of these surfaces to a skill.
 
 ## What the Hermes plugin does
 Registers the hooks `on_session_end` and `on_session_finalize` (no tools). After every N foreground turns (default 4) and at session close, it builds a compact context (opening turns, recent turns, the full user-message trajectory, compaction summary), asks an auxiliary model for strict JSON `{"action":"keep"}` or `{"action":"rename","title":"..."}`, and writes the new title into the Hermes session database while enforcing provenance `derived < llm < user` so user-set titles are never overwritten. It adds `/autotitler status|config|rename-now|retitle-all` commands, rename throttles (`min_interval_minutes`, `renames_per_hour`, `rename_confirmations`), and reads its own `config.yaml`. The README discloses that conversation excerpts are sent to the configured model provider and billed there.

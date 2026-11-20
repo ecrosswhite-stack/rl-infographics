@@ -5,7 +5,7 @@ description: Generate images with MiniMax Image-01 models (text-to-image with im
 # MiniMax Image Generation
 
 **Hermes original:** https://github.com/rriggs/hermes-plugin-minimax-image @ 5a07a0f · tier: community · category: tools · license: MIT
-**Port class:** B — the plugin is a single HTTP call to the MiniMax API that Claude can issue directly.
+**Port class:** B · the plugin is a single HTTP call to the MiniMax API that Claude can issue directly.
 
 ## What the Hermes plugin does
 Registers a `minimax` image generation provider (`ctx.register_image_gen_provider`) behind Hermes' `image_generate` tool. It builds a `POST {api}/v1/image_generation` request with the prompt, an aspect ratio string, `response_format: "url"` and `n: 1`. When a source or reference image is given it switches to `image-01-live` and adds a `subject_reference` array of `{type: "character", image_file: <url or data URI>}`. The returned image URL is cached locally because MiniMax URLs expire after about 24 hours (per the plugin README).

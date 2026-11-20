@@ -1,11 +1,11 @@
 ---
 name: openspec
-description: Run spec-driven development with the OpenSpec CLI (@fission-ai/openspec) from Claude Code: capture ideas, create and promote changes, write proposal, design, spec and task artifacts, track task status, validate, diff delta specs against main specs, and archive, all inside the repo's openspec/ directory. Use when the user mentions OpenSpec, "/opsx", "propose a change", "create a change for <feature>", "apply the change tasks", "verify the change", "archive the change", "sync specs", "show me the spec diff", or wants a structured proposal, design, specs, tasks workflow before coding.
+description: "Run spec-driven development with the OpenSpec CLI (@fission-ai/openspec) from Claude Code: capture ideas, create and promote changes, write proposal, design, spec and task artifacts, track task status, validate, diff delta specs against main specs, and archive, all inside the repo's openspec/ directory. Use when the user mentions OpenSpec, \"/opsx\", \"propose a change\", \"create a change for <feature>\", \"apply the change tasks\", \"verify the change\", \"archive the change\", \"sync specs\", \"show me the spec diff\", or wants a structured proposal, design, specs, tasks workflow before coding."
 ---
 # OpenSpec Spec-Driven Development
 
 **Hermes original:** https://github.com/FelineStateMachine/hermes-openspec @ 493b42c · tier: community · category: desktop · license: MIT
-**Port class:** B — the tools shell out to the `openspec` CLI or edit files under `openspec/`, both of which Claude can do directly; the 11 bundled upstream skills are copied.
+**Port class:** B · the tools shell out to the `openspec` CLI or edit files under `openspec/`, both of which Claude can do directly; the 11 bundled upstream skills are copied.
 
 ## What the Hermes plugin does
 Registers 21 tools in toolset `openspec`: CLI-backed `openspec_list`, `openspec_show`, `openspec_validate`, `openspec_status`, `openspec_instructions`, `openspec_cli` (gated on the binary, found via `OPENSPEC_BIN` or PATH; per `tools.py` they run `openspec list --json`, `openspec show <name> --json --no-interactive`, `openspec validate --json --no-interactive`, `openspec status --change <c> --json`, `openspec instructions --json`, `openspec templates --json`), and filesystem-backed `openspec_context`, `openspec_idea_create|enrich|promote`, `openspec_change_create|promote|archive|unarchive|sequence_set`, `openspec_task_list|set_status`, `openspec_spec_create|show|list|diff` (diff uses `git show HEAD:openspec/specs/<path>/spec.md`). It also ships a dashboard tab and Desktop plugin (Kanban board, spec browser, SQLite source registry at `<hermes_home>/openspec.db`) and bundles 11 upstream OpenSpec workflow skills.

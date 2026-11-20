@@ -5,7 +5,7 @@ description: Human-in-the-loop browser authentication workflow, ported from the 
 # Camofox Human Auth
 
 **Hermes original:** https://github.com/tim-toothed/hermes-camofox-human-auth @ 19946d2 · tier: community · category: web · license: no LICENSE file found
-**Port class:** C — the handoff procedure works with any Claude browser tool, but the three tools drive a Camofox Browser backend (patched Camoufox server) that exists only where the plugin's installer set it up.
+**Port class:** C · the handoff procedure works with any Claude browser tool, but the three tools drive a Camofox Browser backend (patched Camoufox server) that exists only where the plugin's installer set it up.
 
 ## What the Hermes plugin does
 Opens a user-visible browser surface so the human, not the model, enters passwords, OTP and MFA codes, CAPTCHA answers and device approvals, then returns the browser to headless automation on the same persistent profile. It registers three tools: `camofox_backend_status` (GET health of the configured backend), `camofox_auth_open` (switch the native backend to a headed window, or return a noVNC URL for the Docker backend, and open the target URL in the persistent profile), and `camofox_auth_finish` (return to headless and reopen the URL). It also registers the Hermes CLI command `hermes camofox-human-auth setup|status` and a bundled `human-auth` skill with the handoff rules.

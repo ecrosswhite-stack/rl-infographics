@@ -5,7 +5,7 @@ description: Reference card for the Hermes Minecraft gateway adapter, which runs
 # Minecraft Platform (reference card)
 
 **Hermes original:** https://github.com/kyssta-exe/hermes-minecraft-gateway @ 8ff37a6 · tier: community · category: platform · license: MIT
-**Port class:** D — a `kind: platform` gateway adapter (`BasePlatformAdapter` subclass) whose purpose is to make Hermes reachable from a chat platform; Claude has no gateway to plug it into.
+**Port class:** D · a `kind: platform` gateway adapter (`BasePlatformAdapter` subclass) whose purpose is to make Hermes reachable from a chat platform; Claude has no gateway to plug it into.
 
 ## What the Hermes plugin does
 Spawns a Node.js bridge (`bridge/index.js`, Mineflayer bot plus a local HTTP server on `MINECRAFT_BRIDGE_PORT`, default 13000) that joins a Minecraft server, idles and wanders, and queues player chat. The Python adapter polls the bridge, gives each player their own Hermes session, converts markdown to Minecraft section-sign codes, chunks replies to 256 characters, supports `$new`, `$help`, `$model`, `$stop` style commands via `MINECRAFT_PREFIX`, and private tool progress via `/tell`. Env vars: `MINECRAFT_ENABLED`, `MINECRAFT_SERVER` (required); `MINECRAFT_PORT`, `MINECRAFT_USERNAME`, `MINECRAFT_AUTH` (offline or microsoft), `MINECRAFT_PREFIX`, `MINECRAFT_PRIVATE_MESSAGES`, `MINECRAFT_BRIDGE_PORT`, `MINECRAFT_ALLOWED_USERS`, `MINECRAFT_ALLOW_ALL_USERS`, `MINECRAFT_HOME_CHANNEL`. No tools or hooks.

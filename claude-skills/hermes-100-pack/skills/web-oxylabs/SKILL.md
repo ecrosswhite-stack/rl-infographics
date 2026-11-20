@@ -5,7 +5,7 @@ description: Reference card only. Records what is known about the Hermes "web-ox
 # Oxylabs AI Studio web provider (reference card)
 
 **Hermes original:** https://github.com/oxylabs/hermes-web-oxylabs @ e6a5ee8 · tier: community · category: web · license: no LICENSE file found (no checkout available)
-**Port class:** D — the only source of truth is the catalog row; the repository could not be read, so nothing can be reproduced with confidence.
+**Port class:** D · the only source of truth is the catalog row; the repository could not be read, so nothing can be reproduced with confidence.
 
 ## What the Hermes plugin does
 Per the catalog description: "Oxylabs AI Studio web search and extraction provider for Hermes Agent. Requires OXYLABS_API_KEY (sign up at https://aistudio.oxylabs.io/api-key)." The catalog marks it `still_in_catalog: false` and lists no tools or hooks. By analogy with other Hermes `web` providers it most likely registered a web search/extract provider through `register_web_search_provider`, but that is not verified: the checkout at the reviewed commit is empty (no `plugin.yaml`, `__init__.py` or README was fetched).

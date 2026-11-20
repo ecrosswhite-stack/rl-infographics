@@ -5,7 +5,7 @@ description: Delegate a self-contained, read-only analysis prompt to a locally i
 # Kimi Code read-only delegation
 
 **Hermes original:** https://github.com/s-a-s-k-i-a/hermes-kimi-code @ 72c741c · tier: community · category: tools · license: MIT
-**Port class:** B — the plugin spawns the user's `kimi` CLI as `[command, "acp"]` and speaks JSON-RPC over stdio; Claude Code can run the same process and protocol with a script, leaving only the tool registration, `hermes kimi-code doctor` and `config.yaml` keys as Hermes-specific.
+**Port class:** B · the plugin spawns the user's `kimi` CLI as `[command, "acp"]` and speaks JSON-RPC over stdio; Claude Code can run the same process and protocol with a script, leaving only the tool registration, `hermes kimi-code doctor` and `config.yaml` keys as Hermes-specific.
 
 ## What the Hermes plugin does
 Registers one tool, `kimi_code_delegate(prompt, model?, thinking?)` (kind `standalone`), plus the CLI command `hermes kimi-code doctor`. Per call it starts one fresh `kimi acp` process with an allowlisted environment (`PATH`, `HOME`, `KIMI_CODE_HOME`, proxy and locale variables; no Hermes secrets), runs `initialize` (protocolVersion 1, `fs` read/write disabled), `authenticate` with `methodId: "login"`, `session/new` with `mcpServers: []`, sets `model` (`kimi-code/k3` or `kimi-code/k3-256k`) and `thinking` through `session/set_config_option`, then sends `session/prompt`. It rejects every ACP permission request and answers filesystem/terminal requests with errors, caps prompts at 100,000 characters, redacts secrets from diagnostics, and treats an empty reply as an error (`empty_response`). It deliberately does not register Kimi as a Hermes model provider.

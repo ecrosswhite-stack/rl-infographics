@@ -5,7 +5,7 @@ description: Periodic completion-gap self-audit modeled on the Hermes jekyll-hyd
 # Jekyll-Hyde (completion-gap audit)
 
 **Hermes original:** https://github.com/jnorthrup/hermes-jekyl-hyde @ 10149e5 · tier: community · category: general · license: no LICENSE file found
-**Port class:** C — the audit procedure can be followed as instructions; the core (three Hermes hooks, out-of-band `auxiliary_client.call_llm` clones, transcript tombstoning, `/hyde` command, persisted state) depends on the Hermes runtime.
+**Port class:** C · the audit procedure can be followed as instructions; the core (three Hermes hooks, out-of-band `auxiliary_client.call_llm` clones, transcript tombstoning, `/hyde` command, persisted state) depends on the Hermes runtime.
 
 ## What the Hermes plugin does
 Registers hooks `pre_llm_call`, `transform_llm_output`, `post_llm_call` and a `/hyde` slash command; no tools. Every N-th non-trivial user turn (default 7) it runs disposable audit roles out of band: an Auditor writes an evidence review (verified work, gap, status, smallest next action), an Advocate turns it into the smallest concrete continuation or names an external blocker, and an Arbiter labels the evidence `genuine`, `sandbagged` or `uncertain`. Depending on mode (`arena`, `silent`, `mandate`, `heuristic`, `old-testament`, `full`) it injects nothing, a directive, both plans, or replaces the transcript with a compression tombstone. State lives under `$HERMES_HOME/jekyll-hyde/`.

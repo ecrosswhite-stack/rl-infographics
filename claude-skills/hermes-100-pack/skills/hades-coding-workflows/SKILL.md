@@ -1,11 +1,11 @@
 ---
 name: hades-coding-workflows
-description: Three coding workflow patterns ported from the Hermes "hades-coding-workflows" plugin: write implementation plans with bite-sized 2 to 5 minute tasks, exact file paths, complete code and verification commands; execute a plan by dispatching one fresh subagent per task with a two-stage review (spec compliance, then code quality); and a design, implement, verify harness that only delegates genuinely parallel sub-tasks. Use when the user says "write an implementation plan", "break this feature into tasks", "execute this plan with subagents", "subagent-driven development", "use the dual-model harness", "plan then implement", or asks for a structured multi-step coding workflow in Claude Code.
+description: "Three coding workflow patterns ported from the Hermes \"hades-coding-workflows\" plugin: write implementation plans with bite-sized 2 to 5 minute tasks, exact file paths, complete code and verification commands; execute a plan by dispatching one fresh subagent per task with a two-stage review (spec compliance, then code quality); and a design, implement, verify harness that only delegates genuinely parallel sub-tasks. Use when the user says \"write an implementation plan\", \"break this feature into tasks\", \"execute this plan with subagents\", \"subagent-driven development\", \"use the dual-model harness\", \"plan then implement\", or asks for a structured multi-step coding workflow in Claude Code."
 ---
 # Hades Coding Workflows
 
 **Hermes original:** https://github.com/singhguri/hades-coding-workflows @ b68546d · tier: community · category: automation · license: MIT
-**Port class:** A — a skills-only package (three SKILL.md files, no tools, hooks or MCP server); the content ports directly, with Hermes `delegate_task` mapped to Claude Code subagents.
+**Port class:** A · a skills-only package (three SKILL.md files, no tools, hooks or MCP server); the content ports directly, with Hermes `delegate_task` mapped to Claude Code subagents.
 
 ## What the Hermes plugin does
 `__init__.py` registers every `skills/*/SKILL.md` via `ctx.register_skill`, exposing `hades-coding-workflows:dual-model-harness`, `:subagent-driven-development` and `:writing-plans`. No tools, hooks or env vars. The skills are adapted from obra/superpowers and the GSD project (both MIT) and encode: plans with 2 to 5 minute tasks, TDD and frequent commits; fresh subagent per task with spec review then quality review; and a harness that keeps serial multi-file work in the main agent because delegation overhead outweighs the benefit.

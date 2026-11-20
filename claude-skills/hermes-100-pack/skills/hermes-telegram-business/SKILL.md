@@ -5,7 +5,7 @@ description: Reference card for the official Hermes hermes-telegram-business plu
 # Hermes Telegram Business (reference card)
 
 **Hermes original:** https://github.com/NousResearch/hermes-telegram-business @ e905f3b · tier: official · category: platform · license: MIT
-**Port class:** D — a gateway/chat-platform adapter: it hooks python-telegram-bot handlers into the Hermes Telegram gateway via `ctx.register_telegram_handler` and drafts through the host LLM surface `ctx.llm`.
+**Port class:** D · a gateway/chat-platform adapter: it hooks python-telegram-bot handlers into the Hermes Telegram gateway via `ctx.register_telegram_handler` and drafts through the host LLM surface `ctx.llm`.
 
 ## What the Hermes plugin does
 Registers no tools or hooks (plugin.yaml) but one Telegram handler factory. Per `__init__.py` and manager.py it adds a `BusinessConnectionHandler`, `MessageHandler`s for `business_message` and `edited_business_message` (text only), a `CallbackQueryHandler` on the `bd:` prefix for the draft buttons, an owner-DM handler for Edit capture (group -1, raises `ApplicationHandlerStop` when it consumes the text) and a `/biz` command (status, pause, resume, on/off per chat). Incoming customer text is debounced 8 s, drafted once by `ctx.llm.complete` with a persona system prompt, and DMed to the owner with inline [Send] [Edit] [Discard]; Send goes out via `business_connection_id` only when Telegram granted `can_reply`. Drafts expire after 24 h. State is SQLite at `<HERMES_HOME>/telegram-business/state.db`. Config lives under `plugins.entries.telegram-business` (`debounce_seconds`, `draft_ttl_hours`, `max_customer_text_chars`, `owner_persona`).

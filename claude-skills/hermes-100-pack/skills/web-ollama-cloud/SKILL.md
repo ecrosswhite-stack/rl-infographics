@@ -5,7 +5,7 @@ description: Web search and page extraction through Ollama Cloud's native REST A
 # Ollama Cloud Web Search and Fetch
 
 **Hermes original:** https://github.com/rriggs/hermes-plugin-ollama-cloud-search @ 9c739a9 · tier: community · category: web · license: MIT
-**Port class:** B — a thin `httpx` client for two Ollama REST endpoints that Claude can call directly with curl.
+**Port class:** B · a thin `httpx` client for two Ollama REST endpoints that Claude can call directly with curl.
 
 ## What the Hermes plugin does
 Registers one web provider, `ollama-cloud` (`provides_web_providers: [ollama-cloud]`, `kind: backend`), serving both Hermes `web_search` and `web_extract`. Search POSTs `{"query", "max_results"}` to `/api/web_search` (results capped at 10 by the API) and maps `content` to `description`; extract POSTs `{"url"}` to `/api/web_fetch` once per URL and returns `url`, `title`, `content`, `raw_content`, `metadata.links`. Both use `Authorization: Bearer $OLLAMA_API_KEY`. Base URL `https://ollama.com`, overridable with `OLLAMA_BASE_URL`; timeout 30 s. No tools or hooks of its own.

@@ -5,7 +5,7 @@ description: Reference card only. Describes the Hermes "gondola-provider" model-
 # Gondola model provider (reference card)
 
 **Hermes original:** https://github.com/Gondola-Market/hermes-gondola-provider @ ad3f352 · tier: community · category: models · license: MIT
-**Port class:** D — a `kind: model-provider` plugin; Claude cannot swap its own inference backend, so the core feature has no Claude equivalent.
+**Port class:** D · a `kind: model-provider` plugin; Claude cannot swap its own inference backend, so the core feature has no Claude equivalent.
 
 ## What the Hermes plugin does
 Per the README and `__init__.py`, it registers a `ProviderProfile` named `gondola` (alias `gondola-ai`) with `base_url="https://api.gondola-ai.com/v1"`, `auth_type="api_key"`, env vars `GONDOLA_API_KEY` and `GONDOLA_BASE_URL`, and a curated fallback list (`deepseek-v4-flash`, `claude-sonnet-5`, `kimi-k2-7-code`, `qwen3-coder-480b-a35b-instruct-turbo`, `venice-uncensored-1-2`). `fetch_models()` calls `GET {base_url}/models` with a Bearer header and keeps entries whose `endpoint` is `/v1/chat/completions` (or `modality == "text"`). It registers no agent tools or hooks. Gondola requests are metered against a prepaid USDC balance.

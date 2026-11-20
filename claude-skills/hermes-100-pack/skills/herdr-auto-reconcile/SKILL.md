@@ -5,7 +5,7 @@ description: Reference card only. Describes the retired Hermes community plugin 
 # Herdr Auto Reconcile (reference card)
 
 **Hermes original:** https://github.com/chris-yyau/hermes-herdr-auto-reconcile @ 7a01878 · tier: community · category: automation · license: no LICENSE file found (source not available to check)
-**Port class:** D — a Hermes wake-up automation tied to an external "Herdr" pane system; no source could be read and no Claude-native hook exists for it.
+**Port class:** D · a Hermes wake-up automation tied to an external "Herdr" pane system; no source could be read and no Claude-native hook exists for it.
 
 ## What the Hermes plugin does
 Per the catalog row only: "Wake Hermes when allowlisted Herdr panes need reconciliation, without routing or controlling pane work." The catalog lists no tools, hooks or required env vars, and marks the plugin as no longer in the catalog (`still_in_catalog: false`). What "Herdr" is, how panes were detected, and how the wake was delivered are not verified; the checkout directory for this plugin is empty.

@@ -5,7 +5,7 @@ description: Interrogate a rough task draft before executing it. Ask the single 
 # Grill Tab (draft interrogation and execution brief)
 
 **Hermes original:** https://github.com/thanhan-a17/grill-tab @ 2630fe2 · tier: community · category: (none in catalog) · license: MIT
-**Port class:** C — the interrogation and brief-synthesis prompts are reproducible as conversational behavior; the Hermes Desktop Tab-key composer integration and the auxiliary-model routing are not.
+**Port class:** C · the interrogation and brief-synthesis prompts are reproducible as conversational behavior; the Hermes Desktop Tab-key composer integration and the auxiliary-model routing are not.
 
 ## What the Hermes plugin does
 A Hermes Desktop plugin (`kind: standalone`, no tools, no hooks). Pressing Tab in the Desktop composer sends the draft to a dashboard API (`/api/plugins/grill-tab/{interrogate,brief,health}`) backed by `dashboard/grill_engine.py`, which calls a fast auxiliary model (task `grill_tab`) to ask one decision question per rung. Enter synthesizes the settled ladder into a markdown execution brief that is placed back in the composer; nothing is auto-sent. It never asks facts the agent could look up, skips questions where every answer leads to the same plan, and treats "you decide" as accepting the recommendation.

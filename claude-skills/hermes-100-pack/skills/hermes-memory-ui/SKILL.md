@@ -5,7 +5,7 @@ description: Reference card for the Hermes "hermes-memory-ui" plugin, a read-onl
 # Hermes Memory UI (reference card)
 
 **Hermes original:** https://github.com/xraysight/hermes-memory-ui @ 9472bed · tier: community · category: desktop · license: MIT
-**Port class:** D — it is a Hermes Dashboard/Desktop renderer plugin plus a FastAPI backend mounted inside the Hermes dashboard process; neither surface exists in Claude.
+**Port class:** D · it is a Hermes Dashboard/Desktop renderer plugin plus a FastAPI backend mounted inside the Hermes dashboard process; neither surface exists in Claude.
 
 ## What the Hermes plugin does
 Adds a `Memory` tab (Dashboard) and a `/memory` full-page route, sidebar item and command-palette action (Desktop) backed by a shared read-only API mounted at `/api/plugins/hermes-memory-ui/`. Endpoints per `README-API.md`: `/status`, `/builtin` (parses `$HERMES_HOME/memories/MEMORY.md` and `USER.md`), `/session-search` (wraps Hermes's `session_search` tool), `/holographic` (SQLite fact store, default `$HERMES_HOME/memory_store.db`), `/mem0`, `/honcho`, `/byterover` and `/byterover/query` (ByteRover `brv` CLI), `/hindsight` plus `/contents`, `/recall`, `/reflect`, `/mnemosyne` plus `/contents`, `/recall`, `/prefetch`, and `/snapshot`. The root `register()` is a no-op; it registers no agent tools, commands or hooks. It is intentionally read-only and never writes memory.

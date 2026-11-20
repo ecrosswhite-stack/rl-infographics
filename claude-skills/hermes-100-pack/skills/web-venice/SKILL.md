@@ -5,7 +5,7 @@ description: Web search and page extraction through Venice AI's /augment endpoin
 # Venice AI Web Search and Extract
 
 **Hermes original:** https://github.com/MnrGreg/hermes-venice-web @ dcc286f · tier: community · category: web · license: MIT
-**Port class:** B — the plugin wraps two Venice REST endpoints that Claude can call directly with curl or Python.
+**Port class:** B · the plugin wraps two Venice REST endpoints that Claude can call directly with curl or Python.
 
 ## What the Hermes plugin does
 Registers `venice` as a Hermes web backend (`kind: backend`, `provides_web_providers: [venice]`) so the standard `web_search` and `web_extract` tools route to Venice. Per provider.py it POSTs JSON to `https://api.venice.ai/api/v1/augment/search` (`{query, limit, search_provider}`) and `https://api.venice.ai/api/v1/augment/scrape` (`{url}`) with `Authorization: Bearer $VENICE_API_KEY`. Search limit is clamped 1-20; `search_provider` comes from `VENICE_SEARCH_PROVIDER` (`brave` default, or `google`). Search results map `title`, `url`, `content` (or `snippet`). Scrape returns `content` from the response, or from its `data` wrapper when present. The README prices both at $0.01 per request or URL.

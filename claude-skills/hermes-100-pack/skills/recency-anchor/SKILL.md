@@ -5,7 +5,7 @@ description: Restate a short standing instruction at the end of every user turn 
 # Recency Anchor
 
 **Hermes original:** https://github.com/etkecc/hermes-recency-anchor @ 24d1906 · tier: community · category: general · license: LGPL-3.0 (catalog: other)
-**Port class:** C — the effect (append a fixed block to every user turn) is reproducible with a Claude Code hook; the Hermes config block, channel filters and `/anchor` command are not.
+**Port class:** C · the effect (append a fixed block to every user turn) is reproducible with a Claude Code hook; the Hermes config block, channel filters and `/anchor` command are not.
 
 ## What the Hermes plugin does
 One `pre_llm_call` hook and one `/anchor` command, no tools. Per the source, the hook reads `plugins.entries.recency-anchor.text` from `config.yaml` and returns `{"context": text}`, which Hermes appends to the API copy of the user message (the stored transcript and the cached system prefix stay unchanged). `channels` (allow-list) and `exclude_channels` (deny-list, wins) filter by the channel a turn arrived on. `/anchor` prints the resolved channel, whether the anchor fires, and which rule decided.

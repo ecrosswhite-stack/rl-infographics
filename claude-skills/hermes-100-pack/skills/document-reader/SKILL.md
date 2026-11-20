@@ -5,7 +5,7 @@ description: Reference card for the Hermes document-reader plugin, a Windows-onl
 # Hermes Document Reader (reference card)
 
 **Hermes original:** https://github.com/lEWFkRAD/hermes-document-reader @ f3a0bed · tier: community · category: desktop · license: MIT
-**Port class:** D — it is a Hermes Desktop/HUD renderer component plus a per-profile Windows background service managed by a Hermes CLI command; it registers no agent tools.
+**Port class:** D · it is a Hermes Desktop/HUD renderer component plus a per-profile Windows background service managed by a Hermes CLI command; it registers no agent tools.
 
 ## What the Hermes plugin does
 Per plugin.yaml (`kind: standalone`, `platforms: [windows]`) and `__init__.py`, the plugin registers one Hermes CLI command, `hermes document-reader` (configure, install, status, recover, rollback, uninstall), and no tools or hooks. The lifecycle installs a loopback-only FastAPI OCR service as a current-user Windows scheduled task under `<HERMES_HOME>\document-reader`, watches `data\inbox`, sends page images to a user-configured OpenAI-compatible multimodal OCR endpoint (`--api-base`, `--model`, token prompted interactively), and exports `.txt` plus `.xlsx` (one sheet per detected table). A Hermes Desktop sidebar reader shows live previews; a HUD composer action queues up to ten files and inserts only a `[Document Reader queued N files]` marker. The source tree also holds a source-only, profile-bound MCP server (`mcp/anydoc-mcp.py`) that is not installed or registered by the plugin.

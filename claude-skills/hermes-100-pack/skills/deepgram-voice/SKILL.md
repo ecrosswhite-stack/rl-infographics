@@ -5,7 +5,7 @@ description: Text-to-speech with Deepgram Aura 2 and speech-to-text with Deepgra
 # Deepgram Voice (Aura TTS + Nova STT)
 
 **Hermes original:** https://github.com/jaysonsantos/hermes-deepgram-voice-plugin @ c1d8ef2 · tier: community · category: voice · license: MIT
-**Port class:** B — the plugin calls two documented Deepgram REST endpoints with `requests`; Claude can make the same calls.
+**Port class:** B · the plugin calls two documented Deepgram REST endpoints with `requests`; Claude can make the same calls.
 
 ## What the Hermes plugin does
 Registers a Hermes `TTSProvider` ("deepgram", Aura 2 voices) and a `TranscriptionProvider` ("deepgram", Nova models). It lists no tools of its own; Hermes voice features route through it. Per the plugin source TTS is `POST {base}/speak` returning raw audio (mp3, ogg/opus, wav, flac), STT is `POST {base}/listen` with the audio file as the request body, and the transcript is read from `results.channels[].alternatives[0]` (preferring `paragraphs.transcript`). Language is auto-detected unless a language is forced.

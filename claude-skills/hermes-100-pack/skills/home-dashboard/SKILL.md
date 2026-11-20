@@ -5,7 +5,7 @@ description: Reference card for the Hermes "home-dashboard" plugin, a customizab
 # Hermes Home Dashboard (reference card)
 
 **Hermes original:** https://github.com/albertocvrrbs/hermes-home-dashboard @ a8a0182 · tier: community · category: desktop · license: MIT
-**Port class:** D — it is a React bundle rendered inside the Hermes web dashboard and Hermes Desktop, fed by Hermes host APIs; Claude has no renderer-plugin surface or equivalent host data.
+**Port class:** D · it is a React bundle rendered inside the Hermes web dashboard and Hermes Desktop, fed by Hermes host APIs; Claude has no renderer-plugin surface or equivalent host data.
 
 ## What the Hermes plugin does
 Adds a `Home` tab (web, via `dashboard/manifest.json` and `window.__HERMES_PLUGINS__`) and a native Desktop page, sidebar entry and command-palette action (via `@hermes/plugin-sdk`). It renders a free 12-column grid of 16 widgets (Clock, Calendar, Moon, Tokens, Host, Gateway, Sessions, Cron, Logs, Notes, Pomodoro, Countdown, Ascii, Matrix, Heartbeat, Life) with drag, resize, auto-swap and hover controls. Widget data comes from the Hermes host API (status, system, analytics, sessions, cron, logs). A FastAPI router (`dashboard/plugin_api.py`, mounted at `/api/plugins/home-dashboard/`) persists the layout to `~/.hermes/plugins/home-dashboard/layout.json` and exposes read-only `/system`, `/analytics`, `/cron`, `/sessions` adapters for Desktop. It registers no agent tools, commands or hooks.

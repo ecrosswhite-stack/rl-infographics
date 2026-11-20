@@ -5,7 +5,7 @@ description: Extract clean article markdown and metadata (title, description, do
 # Defuddle web extraction
 
 **Hermes original:** https://github.com/annalinneajohansson82/hermes-defuddle @ d28bd52 · tier: community · category: web · license: no LICENSE file found (README states MIT, but no license file is in the checkout)
-**Port class:** B — the provider only shells out to the `defuddle` npm CLI and parses its JSON; Claude Code can run the same command.
+**Port class:** B · the provider only shells out to the `defuddle` npm CLI and parses its JSON; Claude Code can run the same command.
 
 ## What the Hermes plugin does
 Per plugin.yaml (`kind: backend`, `provides_web_providers: [defuddle]`) and `provider.py`, `register()` calls `ctx.register_web_search_provider(DefuddleWebExtractProvider())`. The provider reports `supports_search() == False`, `supports_extract() == True`, checks `shutil.which("defuddle")`, and for each URL runs `defuddle parse --json <url>` with a 60 second timeout, in parallel across URLs. It reads `contentMarkdown` as the content, prefixes the `description` as a blockquote when it differs from the title, and builds metadata from `domain`, `site`, `language`, `wordCount`, `author`, `published`. Errors (binary missing, non-zero exit, timeout, empty or invalid JSON, no `contentMarkdown`) are returned as error records. No env vars, no API key.

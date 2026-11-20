@@ -1,11 +1,11 @@
 ---
 name: hermes-tailscale
-description: Browse and act on the local Tailscale tailnet from Claude Code using the installed tailscale CLI, matching what the Hermes Tailscale desktop plugin did: list devices with OS, IPv4 and online state, ping a peer, produce an ssh line, send a file with Taildrop, pick an exit node, switch accounts, or publish a local port to the tailnet with tailscale serve. Use it when a user says "which of my tailnet machines are online", "tailscale status", "ssh into my Pi over tailscale", "send this file to my laptop with taildrop", "set an exit node", or "expose port 9119 on the tailnet". The Hermes Desktop sidebar page itself is not reproduced.
+description: "Browse and act on the local Tailscale tailnet from Claude Code using the installed tailscale CLI, matching what the Hermes Tailscale desktop plugin did: list devices with OS, IPv4 and online state, ping a peer, produce an ssh line, send a file with Taildrop, pick an exit node, switch accounts, or publish a local port to the tailnet with tailscale serve. Use it when a user says \"which of my tailnet machines are online\", \"tailscale status\", \"ssh into my Pi over tailscale\", \"send this file to my laptop with taildrop\", \"set an exit node\", or \"expose port 9119 on the tailnet\". The Hermes Desktop sidebar page itself is not reproduced."
 ---
 # Hermes Tailscale
 
 **Hermes original:** https://github.com/Adolanium/hermes-tailscale @ 6dad1d5 · tier: community · category: desktop · license: MIT
-**Port class:** C — every action shells out to the Tailscale CLI, which Claude Code can run, but the plugin is a Hermes Desktop sidebar page (renderer `plugin.js`) with no agent tools, so the UI half has no counterpart.
+**Port class:** C · every action shells out to the Tailscale CLI, which Claude Code can run, but the plugin is a Hermes Desktop sidebar page (renderer `plugin.js`) with no agent tools, so the UI half has no counterpart.
 
 ## What the Hermes plugin does
 Per the README and `catalog/plugin.yaml`, it adds a "Tailscale" page to Hermes Desktop (`provides_tools: []`, `provides_hooks: []`). The page polls `tailscale status --json` (cached to `status-cache.json` next to the plugin), lists peers with name, OS, IPv4 and status, copies IPs or MagicDNS names, pings peers, opens SSH in an in-app xterm, sends files with Taildrop (`tailscale file cp`), picks an exit node, switches accounts (`tailscale switch --list --json`), and publishes the local Hermes port with `tailscale serve --bg --yes <port>` after checking something listens on `127.0.0.1:<port>`. It never calls the Tailscale cloud API and stores no token; mutating actions ask for confirmation first and Funnel stays off.

@@ -5,7 +5,7 @@ description: Pull environment variables out of a Vaultwarden or Bitwarden Passwo
 # Vaultwarden / Bitwarden secret source
 
 **Hermes original:** https://github.com/hansipie/hermes-vaultwarden @ a461ecf · tier: community · category: general · license: no LICENSE file found
-**Port class:** B — the plugin shells out to the `bw` CLI (`bw get item`) and maps JSON fields to env vars; Claude can run the same commands.
+**Port class:** B · the plugin shells out to the `bw` CLI (`bw get item`) and maps JSON fields to env vars; Claude can run the same commands.
 
 ## What the Hermes plugin does
 Registers a bulk `SecretSource` named `vaultwarden` and the CLI tree `hermes vaultwarden setup|status|sync|disable`; no agent tools. At startup it reads the session token from the env var named by `secrets.vaultwarden.session_env` (default `BW_SESSION`), runs `bw get item -- "<item_name>"` with `BW_SESSION` passed in the child environment (never on argv), and offers every custom field whose name is a valid env-var identifier as an environment variable. `login.username`, `login.password` and `notes` are exported only when `username_env` / `password_env` / `notes_env` are configured. Results are cached (default 300 s) in memory and in `~/.hermes/cache/vaultwarden_cache.json` keyed on a session fingerprint. The session env var is protected from being overwritten. Failures never block startup. `bw` is not auto-installed; `BITWARDENCLI_APPDATA_DIR` is passed through when set.

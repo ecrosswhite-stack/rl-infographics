@@ -5,7 +5,7 @@ description: Read a user's Agent Analytics (agentanalytics.sh) project data from
 # Agent Analytics (read-only project summary)
 
 **Hermes original:** https://github.com/Agent-Analytics/agent-analytics-hermes-plugin @ 63f11d3 · tier: community · category: desktop · license: MIT
-**Port class:** C — the Hermes Web dashboard tab is not portable, but the REST calls its backend makes (per `dashboard/plugin_api.py`) can be issued by Claude directly.
+**Port class:** C · the Hermes Web dashboard tab is not portable, but the REST calls its backend makes (per `dashboard/plugin_api.py`) can be issued by Claude directly.
 
 ## What the Hermes plugin does
 Dashboard-only read plugin. It registers no agent tools or hooks (`register()` is a no-op). It adds an "Analytics" tab to the Hermes web dashboard (`dashboard/manifest.json`, `dist/index.js`) backed by a FastAPI router (`dashboard/plugin_api.py`) that signs the user in to an existing Agent Analytics account with a browser-approval flow, stores tokens under `$HERMES_HOME/state/agent-analytics-hermes-plugin.json`, lets the user pick a project, and shows a read-only summary (project, usage, stats, top entry pages, events, insights). The README states the plugin reports its own usage telemetry to Agent Analytics.

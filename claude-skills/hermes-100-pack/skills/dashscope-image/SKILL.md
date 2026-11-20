@@ -5,7 +5,7 @@ description: Generate or edit images with Alibaba Cloud DashScope (Qwen Cloud / 
 # DashScope (Qwen Cloud) image generation
 
 **Hermes original:** https://github.com/rriggs/hermes-plugin-dashscope-image @ f13665c · tier: community · category: tools · license: MIT
-**Port class:** B — the plugin is a thin HTTP client for one DashScope endpoint; Claude can issue the same request from Claude Code or Cowork.
+**Port class:** B · the plugin is a thin HTTP client for one DashScope endpoint; Claude can issue the same request from Claude Code or Cowork.
 
 ## What the Hermes plugin does
 Registers a `DashScopeImageGenProvider` (kind `backend`) so Hermes's `image_generate` tool routes to Alibaba Cloud DashScope. It supports `wan2.7-image` (fast text-to-image) and `wan2.7-image-pro` (image-to-image; auto-selected when a source image is given), maps aspect ratios to sizes `1280*720`, `1024*1024`, `720*1280`, converts local image files to base64 data URIs (max 10 MB), and caches the returned image because DashScope OSS URLs expire after about 24 hours. It registers no standalone tools.

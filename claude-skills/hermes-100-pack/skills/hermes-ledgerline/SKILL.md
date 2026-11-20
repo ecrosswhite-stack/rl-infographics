@@ -5,7 +5,7 @@ description: Reference card only. Describes Ledgerline, a Hermes Desktop plugin 
 # Ledgerline (Hermes Desktop cost pane)
 
 **Hermes original:** https://github.com/Adolanium/hermes-ledgerline @ 9be4b85 (subdir `catalog`) · tier: community · category: desktop · license: no LICENSE file found
-**Port class:** D — a single Electron renderer plugin (`desktop/plugin.js`) built on the Hermes Desktop plugin SDK and the gateway's internal REST/RPC bridge; `__init__.py` registers nothing.
+**Port class:** D · a single Electron renderer plugin (`desktop/plugin.js`) built on the Hermes Desktop plugin SDK and the gateway's internal REST/RPC bridge; `__init__.py` registers nothing.
 
 ## What the Hermes plugin does
 Adds a Ledgerline page, sidebar entry, command-palette action (Ctrl/Cmd+Alt+L) and statusbar chip to Hermes Desktop. It reads the gateway's own session list, `session.usage` RPC and `/api/analytics/usage` route to show spend today/week/month, per-model token splits (input, cache reads, cache writes, output), per-helper-task costs, budgets with 80 % and 100 % warnings, cost recommendations, and a live running cost for the current turn. "Quick explain" and "full audit" send a session digest to the user's configured Hermes model; scheduled spend reports and budget alerts run through `hermes cron` and `hermes send` on the gateway host. Manifest: `kind: standalone`, `provides_tools: []`, `provides_hooks: []`, `requires_env: []`.

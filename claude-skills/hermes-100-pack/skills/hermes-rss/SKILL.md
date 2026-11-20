@@ -5,7 +5,7 @@ description: Read RSS 2.0 and Atom feeds and discuss, summarize or source-check 
 # Hermes RSS feed reading
 
 **Hermes original:** https://github.com/Adolanium/hermes-rss @ 8053056 · tier: community · category: desktop · license: no LICENSE file found
-**Port class:** C — fetching and parsing feeds, then summarizing or investigating an article, is plain HTTP plus XML parsing Claude can do; the Hermes Desktop library UI, IndexedDB persistence and native chat hand-off are not portable.
+**Port class:** C · fetching and parsing feeds, then summarizing or investigating an article, is plain HTTP plus XML parsing Claude can do; the Hermes Desktop library UI, IndexedDB persistence and native chat hand-off are not portable.
 
 ## What the Hermes plugin does
 A single Hermes Desktop plugin (`desktop/plugin.js`, kind `standalone`) that adds an `RSS` sidebar category. It subscribes to RSS 2.0 and Atom feeds (up to 200), refreshes on demand or every 1 to 1,440 minutes, stores articles, read state, saved stories, saved searches and mute rules in the local IndexedDB database `hermes-rss-library`, and imports/exports OPML. Feed fetches run on the connected gateway through `shell.exec` using host `curl` (with `--max-filesize 2000000`, `--max-time 25`, DNS resolution first, private-network addresses rejected). AI actions are explicit: "Summarize" calls `llm.oneshot`, while "Discuss" and "Check sources" create a native Hermes session (`session.create`, `prompt.submit`) seeded with the article JSON marked as untrusted source data. The catalog package registers no agent tools, hooks or middleware.

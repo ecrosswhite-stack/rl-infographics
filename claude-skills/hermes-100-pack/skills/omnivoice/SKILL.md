@@ -1,11 +1,11 @@
 ---
 name: omnivoice
-description: Synthesize speech locally with Xiaomi's OmniVoice zero-shot TTS model (k2-fsa/OmniVoice) from Claude Code: multilingual text to speech, voice design from a description ("female, low pitch, british accent"), and voice cloning from a reference WAV plus transcript, written to wav/flac/ogg (mp3 via ffmpeg). Use when the user says "read this aloud with OmniVoice", "generate a voiceover", "clone this voice", "make a TTS clip in Thai/Chinese/Japanese", "narrate this script locally", or wants an offline TTS pipeline instead of a cloud API. Honors the same OMNIVOICE_* environment variables the Hermes plugin used.
+description: "Synthesize speech locally with Xiaomi's OmniVoice zero-shot TTS model (k2-fsa/OmniVoice) from Claude Code: multilingual text to speech, voice design from a description (\"female, low pitch, british accent\"), and voice cloning from a reference WAV plus transcript, written to wav/flac/ogg (mp3 via ffmpeg). Use when the user says \"read this aloud with OmniVoice\", \"generate a voiceover\", \"clone this voice\", \"make a TTS clip in Thai/Chinese/Japanese\", \"narrate this script locally\", or wants an offline TTS pipeline instead of a cloud API. Honors the same OMNIVOICE_* environment variables the Hermes plugin used."
 ---
 # OmniVoice Local TTS
 
 **Hermes original:** https://github.com/ThaungThanHan/hermes-omnivoice @ 21d2900 · tier: community · category: voice · license: no LICENSE file found (pyproject.toml declares Apache-2.0)
-**Port class:** B — the plugin wraps the `omnivoice` Python package and a CLI wrapper; Claude can install the package and run the same `OmniVoice.from_pretrained(...).generate(...)` call in a script.
+**Port class:** B · the plugin wraps the `omnivoice` Python package and a CLI wrapper; Claude can install the package and run the same `OmniVoice.from_pretrained(...).generate(...)` call in a script.
 
 ## What the Hermes plugin does
 Registers a Hermes TTS provider named `omnivoice` (`provides_tts: [omnivoice]`) so Hermes' `text_to_speech` flow renders through OmniVoice. It reads `tts.omnivoice` from `~/.hermes/config.yaml` with `OMNIVOICE_*` env overrides, loads `k2-fsa/OmniVoice` once per session on `device: auto` / `dtype: float16`, maps a `voice` value to auto, `instruct:<description>`, `ref:<path>` or an existing audio path, and writes wav/flac/ogg with `soundfile` or mp3 through `ffmpeg`. It also installs an `omnivoice-hermes-tts` command-provider wrapper. No tools or hooks.

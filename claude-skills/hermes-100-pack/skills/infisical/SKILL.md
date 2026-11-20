@@ -5,7 +5,7 @@ description: Read secrets from an Infisical secret store (US/EU cloud or self-ho
 # Infisical secret source
 
 **Hermes original:** https://github.com/antonba/hermes-infisical-plugin @ d1c5d46 · tier: community · category: general · license: no LICENSE file found
-**Port class:** B — the plugin is a thin client over documented Infisical REST endpoints (listed in `infisical_plugin/client.py`); Claude can call them with curl and export the results.
+**Port class:** B · the plugin is a thin client over documented Infisical REST endpoints (listed in `infisical_plugin/client.py`); Claude can call them with curl and export the results.
 
 ## What the Hermes plugin does
 Registers two Hermes secret sources, not tools: `infisical` (mapped: `ENV_VAR: inf://<project>/<environment>[/<folder>...]/<key>[?type=dynamic&field=...&ttl=...]`) and `infisical_bulk` (inject a whole project/environment/folder). At Hermes startup it authenticates by one of three methods (`agent` token file, default `~/.infisical/agent-token`; `universal-auth` machine identity; static `token`), resolves project names/slugs to IDs, fetches secret values, and places them in the Hermes process environment. Strictly read-only; dynamic-secret leases are created once at startup and never renewed. `INFISICAL_TOKEN`, `INFISICAL_CLIENT_ID`, `INFISICAL_CLIENT_SECRET` are protected from being overwritten.

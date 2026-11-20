@@ -1,11 +1,11 @@
 ---
 name: twenty-crm
-description: Work with Twenty CRM (twenty.com) the way the Hermes twenty-crm plugin does: inspect the workspace connection, call the REST API, run core-record or metadata GraphQL, introspect the live schema before any write, and optionally run a self-hosted Twenty stack with Docker Compose. Use when the user mentions "Twenty CRM", "twenty.com", TWENTY_API_KEY or TWENTY_BASE_URL, asks to read/create/update people, companies, opportunities, notes, custom objects, fields, views, dashboards or workflows in Twenty, or wants a local Twenty instance started, diagnosed or stopped. Do not use for other CRMs.
+description: "Work with Twenty CRM (twenty.com) the way the Hermes twenty-crm plugin does: inspect the workspace connection, call the REST API, run core-record or metadata GraphQL, introspect the live schema before any write, and optionally run a self-hosted Twenty stack with Docker Compose. Use when the user mentions \"Twenty CRM\", \"twenty.com\", TWENTY_API_KEY or TWENTY_BASE_URL, asks to read/create/update people, companies, opportunities, notes, custom objects, fields, views, dashboards or workflows in Twenty, or wants a local Twenty instance started, diagnosed or stopped. Do not use for other CRMs."
 ---
 # Twenty CRM
 
 **Hermes original:** https://github.com/TREE-Ind/hermes-twenty-crm @ 3d87c16 · tier: community · category: tools · license: MIT
-**Port class:** B — the plugin is a standard-library HTTP client over Twenty's REST and GraphQL APIs plus a Docker Compose launcher; Claude can do both from bash.
+**Port class:** B · the plugin is a standard-library HTTP client over Twenty's REST and GraphQL APIs plus a Docker Compose launcher; Claude can do both from bash.
 
 ## What the Hermes plugin does
 Registers the `twenty` toolset: `twenty_describe_workspace` (connection mode, base URL, endpoints, configured auth modes, OAuth discovery), `twenty_rest` (any path under `/rest/`), `twenty_graphql` (`api=core` -> `/graphql`, `api=metadata` -> `/metadata`), `twenty_schema` (GraphQL introspection, optionally one type), the `/twenty` slash command (status, bootstrap, start, logs, stop, doctor) and hooks `on_session_start`, `pre_tool_call` that autostart the managed stack. Auth per tools.py: `TWENTY_API_KEY`, then `TWENTY_ACCESS_TOKEN`, then OAuth client credentials (`TWENTY_CLIENT_ID`/`TWENTY_CLIENT_SECRET`, `POST /oauth/token`, scope `TWENTY_OAUTH_SCOPE` default `api`), all sent as `Authorization: Bearer`. Managed mode writes a Docker Compose file (twentycrm/twenty, postgres:16, redis:7) under `~/.hermes/projects/twenty-crm` bound to `127.0.0.1:3000`. It ships one skill, `twenty-crm`.

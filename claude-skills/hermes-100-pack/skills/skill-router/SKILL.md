@@ -5,7 +5,7 @@ description: Reference card for the Hermes "skill-router" plugin, which hooked p
 # Skill Router (reference card)
 
 **Hermes original:** https://github.com/xXLODXx/hermes-skill-router @ 445c32f · tier: community · category: general · license: MIT
-**Port class:** D — built entirely on Hermes runtime hooks (`pre_llm_call`, `pre_tool_call`, `post_tool_call`, `post_llm_call`) and the Hermes skill index; Claude exposes no hook that rewrites the prompt before each model call from a skill.
+**Port class:** D · built entirely on Hermes runtime hooks (`pre_llm_call`, `pre_tool_call`, `post_tool_call`, `post_llm_call`) and the Hermes skill index; Claude exposes no hook that rewrites the prompt before each model call from a skill.
 
 ## What the Hermes plugin does
 Registers four hooks and no tools. On `pre_llm_call` it scores the user message against an optional routing-matrix markdown file (`SKILL_ROUTER_MATRIX_PATH`) and the tags, name, category and description of every installed skill under `HERMES_HOME`, then injects a compact "Skill Routing" block (at most three candidates, 70 to 200 tokens) telling the model which skills to `skill_view`. A per-session match signature suppresses repeats until the topic changes. `pre_tool_call` learns keyword-to-tool associations weighted by lift and stores them locally in `learned_keywords.json` and `tool_stats.json`; `post_tool_call` and `post_llm_call` add opt-in output learning. It writes anonymized JSONL diagnostics to `data/v2_injections.jsonl` and ships a dashboard tab ("Mission Control"). No network calls, no telemetry.

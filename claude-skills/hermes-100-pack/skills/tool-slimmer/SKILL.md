@@ -1,11 +1,11 @@
 ---
 name: tool-slimmer
-description: Reference card for Hermes Tool Slimmer, a Hermes plugin that shrinks the per-request tool-schema payload by BM25-ranking tools and reports estimated token savings in the Hermes dashboard. Not a working skill. Read it only when someone asks what tool-slimmer did, or how Claude handles large tool catalogs (answer: Claude Code defers tools and loads them on demand via ToolSearch).
+description: "Reference card for Hermes Tool Slimmer, a Hermes plugin that shrinks the per-request tool-schema payload by BM25-ranking tools and reports estimated token savings in the Hermes dashboard. Not a working skill. Read it only when someone asks what tool-slimmer did, or how Claude handles large tool catalogs (answer: Claude Code defers tools and loads them on demand via ToolSearch)."
 ---
 # Tool Slimmer (reference card)
 
 **Hermes original:** https://github.com/aliasocracy/hermes-tool-slimmer @ 3128c8f · tier: community · category: tools · license: MIT
-**Port class:** D — it patches Hermes request construction (`select_tool_schemas` hook / core patch) and ships a Hermes dashboard plugin; both are Hermes-internal.
+**Port class:** D · it patches Hermes request construction (`select_tool_schemas` hook / core patch) and ships a Hermes dashboard plugin; both are Hermes-internal.
 
 ## What the Hermes plugin does
 Registers `tool_slimmer_select`, `tool_slimmer_status`, `tool_slimmer_request_full_tools`, `tool_slimmer_hydrate_tools`, a `pre_llm_call` hook, the optional `select_tool_schemas` selector hook, a `/tool-slimmer` slash command and a `hermes tool-slimmer` CLI (`status`, `doctor`, `index`, `select`, `benchmark`, `eval`, `advisor`, `privacy`, `diagnostics`). Modes: `eager`, `keyword` (BM25 plus boosts), `hybrid`, `anthropic_tool_search`, experimental `two_pass`. It fails open to the full schema list on errors, keeps `always_include` tools, and shows "estimated schema tokens saved" (bytes/4) in the dashboard. The README notes that recent Hermes builds have a native progressive tool loader that is usually the better default.

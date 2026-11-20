@@ -5,7 +5,7 @@ description: Run a static, no-execution security review of a Hermes Agent plugin
 # Hermes Plugin Guard
 
 **Hermes original:** https://github.com/mauricemohr88-debug/hermes-plugin-guard @ 857d881 · tier: community · category: tools · license: MIT
-**Port class:** B — the plugin is a thin wrapper around the `hpg` CLI, which is a published PyPI package Claude Code can install and run.
+**Port class:** B · the plugin is a thin wrapper around the `hpg` CLI, which is a published PyPI package Claude Code can install and run.
 
 ## What the Hermes plugin does
 Per the README, `hpg` is a local static scanner for Hermes plugins: it checks manifests (`HPG001`-`HPG006`), Python source for execution, deserialization, subprocess, sensitive-path, network and privileged-registration patterns (`HPG101`-`HPG112`), supply-chain issues such as likely secrets, mutable dependencies and remote installers (`HPG201`-`HPG204`), and project hygiene (`HPG301`-`HPG303`). Target code is read as data and never imported or executed; the CLI makes no network requests. Inside Hermes it registers one read-only tool, `plugin_guard_review_candidate`, which reviews an installed but disabled plugin under `HERMES_HOME/plugins` and returns at most 20 findings with rule ids and severities only, plus the `hermes plugin-guard` operator CLI.

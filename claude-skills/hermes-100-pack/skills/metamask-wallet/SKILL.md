@@ -5,7 +5,7 @@ description: Drive a MetaMask Agent Wallet from Claude Code through the `mm` CLI
 # MetaMask Agent Wallet (mm CLI)
 
 **Hermes original:** https://github.com/akugone/hermes-metamask-wallet @ b56d6bb · tier: community · category: tools · license: MIT
-**Port class:** B — every tool is a subprocess call to `mm <args> --json`; Claude Code can run the same CLI, with its own permission prompt standing in for the Hermes approval gate.
+**Port class:** B · every tool is a subprocess call to `mm <args> --json`; Claude Code can run the same CLI, with its own permission prompt standing in for the Hermes approval gate.
 
 ## What the Hermes plugin does
 Registers `mm_status`, `mm_setup`, `mm_balance`, `mm_market`, `mm_history`, `mm_swap_quote`, `mm_transfer`, `mm_swap_execute`, `mm_sign`, `mm_requests`, `mm_policy`, a `/wallet` slash command and a bundled skill. A `pre_tool_call` hook escalates transfers, swaps, signatures, policy changes and sensitive setup steps to Hermes's human-approval prompt (fail-closed without a human) and flags direct `mm` write commands typed into the terminal as bypass attempts; a `post_tool_call` hook starts a watcher for requests stuck in `AWAITING_MFA`. Keys stay in MetaMask (server-wallet TEE or BYOK via `MM_MNEMONIC`).

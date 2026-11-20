@@ -5,7 +5,7 @@ description: Post, edit, pin and react to messages in Fluxer channels or DMs thr
 # Fluxer
 
 **Hermes original:** https://github.com/elkimek/hermes-fluxer-plugin @ 6d2ef97 · tier: community · category: platform · license: MIT
-**Port class:** C — outbound REST routes are visible in the adapter and callable with curl; the Gateway WebSocket inbound loop, mention gating, approval flows and LiveKit voice bridge are Hermes gateway machinery.
+**Port class:** C · outbound REST routes are visible in the adapter and callable with curl; the Gateway WebSocket inbound loop, mention gating, approval flows and LiveKit voice bridge are Hermes gateway machinery.
 
 ## What the Hermes plugin does
 A `kind: platform` adapter for Fluxer, a Discord-like chat platform. It receives `MESSAGE_CREATE` events over the Fluxer Gateway WebSocket (discovered via `GET /gateway/bot`), gates them by `FLUXER_ALLOWED_USERS` (deny-by-default) and mention rules, and sends replies through the bot REST API: messages, edits, deletes, pins, reactions, typing, media uploads, channel directory enumeration, optional native slash-command registration, and an optional realtime voice bridge. It registers no agent tools.

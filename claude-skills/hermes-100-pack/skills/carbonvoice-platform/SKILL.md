@@ -5,7 +5,7 @@ description: Reference card for the Hermes "carbonvoice-platform" gateway adapte
 # Carbon Voice Gateway Adapter (reference card)
 
 **Hermes original:** https://github.com/PhononX/hermes-plugin-carbonvoice @ 55867db · tier: community · category: platform · license: MIT
-**Port class:** D — a chat-platform gateway adapter that runs inside the long-lived Hermes gateway process; Claude has no equivalent inbound message loop.
+**Port class:** D · a chat-platform gateway adapter that runs inside the long-lived Hermes gateway process; Claude has no equivalent inbound message loop.
 
 ## What the Hermes plugin does
 Registers a `platform` kind plugin (`kind: platform`, no tools, no hooks) that connects the Hermes gateway to Carbon Voice. It listens for `message:created` / `message:updated` events over Socket.IO (via `python-socketio`) and falls back to polling `POST /v3/messages/recent` every `CARBONVOICE_POLL_INTERVAL_MS` (default 5000). It persists a cursor to `$HERMES_HOME/state/carbonvoice.json` so messages received while Hermes was offline are processed on restart. Replies are posted with `POST /v3/messages/start` (legacy) or `POST /v5/messages/text`, threaded via `reply_to_message_id`; it also reacts to inbound messages, marks them read, resolves usernames via `GET /v3/users/{id}`, and enforces a deny-by-default allowlist of senders with owner approval by reaction. Text only: Carbon Voice transcribes voice memos before delivery.

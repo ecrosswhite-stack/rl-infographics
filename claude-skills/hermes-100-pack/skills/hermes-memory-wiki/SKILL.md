@@ -5,7 +5,7 @@ description: Reference card only. Describes the Memory Wiki plugin, a Hermes das
 # Memory Wiki (Hermes dashboard tab)
 
 **Hermes original:** https://github.com/NousResearch/hermes-memory-wiki @ 9bc3913 · tier: official · category: none listed · license: MIT
-**Port class:** D — a dashboard-only plugin (FastAPI router mounted at `/api/plugins/memory-wiki/` plus a React bundle) that reads Hermes' `state.db` through `hermes_state.SessionDB`; `register()` adds no tools or hooks.
+**Port class:** D · a dashboard-only plugin (FastAPI router mounted at `/api/plugins/memory-wiki/` plus a React bundle) that reads Hermes' `state.db` through `hermes_state.SessionDB`; `register()` adds no tools or hooks.
 
 ## What the Hermes plugin does
 Adds a Memory Wiki tab to `hermes dashboard` with Subjects (topics extracted deterministically from session titles, file paths, tool names, slash commands, quoted phrases and CamelCase identifiers), Daily logs, Recent activity (ten most recent sessions) and a Persistent Memory panel rendering `MEMORY.md` / `USER.md` entries exactly as the memory tool parses them. Backend routes: `GET /overview`, `GET /subjects?q=&limit=`, `GET /subjects/{slug}`, `GET /days?limit=`, `GET /days/{date}`. No LLM calls and no writes; `state.db` is opened read-only. Manifest name is `memory-wiki`; requires Hermes >= 0.21.
