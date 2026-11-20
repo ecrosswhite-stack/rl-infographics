@@ -5,7 +5,7 @@ description: Chinese text-to-speech and speech-to-text through Volcengine (火�
 # Volcengine Voice
 
 **Hermes original:** https://github.com/linxichen/hermes-volcengine-voice @ e3f8a30 · tier: community · category: voice · license: no LICENSE file found (README states MIT, no LICENSE file in the checkout)
-**Port class:** B - the plugin wraps two documented Volcengine HTTP/WebSocket endpoints with a single API key; Claude can call the TTS endpoint with curl or Python and the STT endpoint with a short Python websockets script.
+**Port class:** B — the plugin wraps two documented Volcengine HTTP/WebSocket endpoints with a single API key; Claude can call the TTS endpoint with curl or Python and the STT endpoint with a short Python websockets script.
 
 ## What the Hermes plugin does
 A `kind: provider` plugin that monkey-patches Hermes' `text_to_speech_tool` and `transcribe_audio` so that `tts.provider: volcengine` / `stt.provider: volcengine` route to Doubao. TTS uses HTTP chunked streaming at `POST https://openspeech.bytedance.com/api/v3/tts/unidirectional`; STT uses the binary WebSocket protocol at `wss://openspeech.bytedance.com/api/v3/sauc/bigmodel_async`. It maps short voice names to voice types, supports `[情绪]` emotion prefixes passed as non-billed `context_texts` for 2.0 voices, truncates TTS text to 5000 characters, and registers a `pre_llm_call` hook that injects voice-friendly response instructions. It registers no tools of its own.

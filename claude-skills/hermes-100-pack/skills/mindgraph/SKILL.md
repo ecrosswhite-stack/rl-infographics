@@ -5,7 +5,7 @@ description: Semantic graph memory in the MindGraph cloud (goals, decisions, cla
 # MindGraph Memory
 
 **Hermes original:** https://github.com/shuruheel/mindgraph @ b96c259 · tier: community · category: memory · license: MIT
-**Port class:** C - the five graph tools wrap the public `mindgraph-sdk` client, which Claude Code can call directly; the session lifecycle, prefetch thread and behavioral contract injected into the system prompt depend on the Hermes MemoryProvider interface.
+**Port class:** C — the five graph tools wrap the public `mindgraph-sdk` client, which Claude Code can call directly; the session lifecycle, prefetch thread and behavioral contract injected into the system prompt depend on the Hermes MemoryProvider interface.
 
 ## What the Hermes plugin does
 Registers `MindGraphMemoryProvider`. On each conversation it opens a MindGraph `Session` node (`hermes-<session_id[:8]>`), bakes active goals, policies, open questions, open decisions and weak claims into the system prompt, prefetches hybrid full-text plus semantic context for the next turn in a background thread, and on session end ingests the transcript for five-layer extraction (Reality, Epistemic, Intent, Action, Agent). It exposes five tools: `mindgraph_remember` (entities, observations, claims, preferences, notes), `mindgraph_retrieve` (hybrid search, structured queries, traversal), `mindgraph_commit` (goals, decisions, plans, tasks, risks, questions), `mindgraph_ingest` (bulk articles, transcripts, code) and `mindgraph_synthesize` (project-scoped synthesis producing Article nodes). It declares `pip_dependencies: mindgraph-sdk>=0.4.0` and `requires_env: MINDGRAPH_API_KEY`.

@@ -5,7 +5,7 @@ description: Reference card for the Hermes Desktop plugin hermes-pets-all ("All 
 # All Pets (reference card)
 
 **Hermes original:** https://github.com/poponline63/hermes-pets-all @ 2130957 · tier: community · category: desktop · license: MIT
-**Port class:** D - a Hermes Desktop pane plus one tool that reads Hermes-internal state (`agent.pet.store`, `display.pet.slug`); the concept of an animated desktop pet does not exist in Claude.
+**Port class:** D — a Hermes Desktop pane plus one tool that reads Hermes-internal state (`agent.pet.store`, `display.pet.slug`); the concept of an animated desktop pet does not exist in Claude.
 
 ## What the Hermes plugin does
 Hermes Desktop ships animated "pets" (mascots) and a settings picker capped at 60 rows. This plugin opens a docked workspace pane (`host.openWorkspace`) that lists every installed pet with thumbnails, a search box, a live count and click-to-adopt, reachable from a status-bar chip, `Ctrl+Alt+P`, or the command palette. It calls the Desktop RPCs `pet.gallery` (with `localOnly: true`), `pet.thumb` and `pet.select`. The agent half registers one read-only tool, `list_pets`, which returns each pet's slug, display name, whether the sprite file exists, whether it is generated, and which pet is active. No network access, credentials or environment variables are involved.
