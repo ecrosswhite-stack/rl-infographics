@@ -5,7 +5,7 @@ description: Browse, search, edit and map the links of an Obsidian vault from Cl
 # Obsidian Memory
 
 **Hermes original:** https://github.com/kyssta-exe/hermes-obsidian-memory @ 1123998 · tier: community · category: desktop · license: no LICENSE file found (plugin.yaml states MIT, no LICENSE file in the checkout)
-**Port class:** C — everything the FastAPI backend does is plain filesystem work on markdown files that Claude can do directly; the React dashboard tab with the force-directed graph is Hermes UI and is not reproduced.
+**Port class:** C - everything the FastAPI backend does is plain filesystem work on markdown files that Claude can do directly; the React dashboard tab with the force-directed graph is Hermes UI and is not reproduced.
 
 ## What the Hermes plugin does
 Adds an "Obsidian" tab to the Hermes dashboard (`/obsidian`). Its backend (`dashboard/api.py`) discovers vaults, scans every `*.md` under a vault, extracts `#tags` and front-matter `tags:` lists, extracts `[[wikilinks]]` (dropping the `|alias` part), computes backlinks, builds graph nodes and edges, renders markdown with code blocks, tables, callouts and checkboxes, and lets the user edit a note in place with save/cancel. Multi-vault switching, name search and folder or tag filters are included. It registers no agent tools and no hooks; the only setting is `OBSIDIAN_VAULT_PATH`.

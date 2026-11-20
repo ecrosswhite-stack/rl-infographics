@@ -5,7 +5,7 @@ description: Post to and read from a self-hosted Chatto team-chat server over it
 # Chatto Platform
 
 **Hermes original:** https://github.com/jrimmer/hermes-chatto-plugin @ aab0a20 · tier: community · category: platform · license: no LICENSE file found (README states MIT, no LICENSE file in the checkout)
-**Port class:** C — outbound calls use a documented JSON-over-HTTP API that Claude can call with curl; the inbound relay (WebSocket protobuf listener, mention filtering, auto-threading, cron delivery) lives in the Hermes gateway and has no Claude equivalent.
+**Port class:** C - outbound calls use a documented JSON-over-HTTP API that Claude can call with curl; the inbound relay (WebSocket protobuf listener, mention filtering, auto-threading, cron delivery) lives in the Hermes gateway and has no Claude equivalent.
 
 ## What the Hermes plugin does
 A `kind: platform` gateway adapter. It logs into a Chatto server, opens the realtime WebSocket at `/api/realtime` (binary protobuf, protocol version 1, decoded with a stdlib codec), watches joined rooms, and relays `message_posted`, mention and DM events to the Hermes agent. Replies go back through ConnectRPC `CreateMessage` with thread support, typing indicators, reactions, presence and chunked asset upload. It registers no tools; configuration is entirely through `CHATTO_*` environment variables or `gateway.platforms.chatto` in Hermes config. Tested against Chatto v0.4.19 per the README.

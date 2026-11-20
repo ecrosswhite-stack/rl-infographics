@@ -5,7 +5,7 @@ description: Private, local-first job-search assistant that pulls live postings 
 # Job Search
 
 **Hermes original:** https://github.com/agent-data/job-search @ dba0c09 · tier: community · category: automation · license: MIT
-**Port class:** A — the repository is a portable skills package with a `.claude-plugin/plugin.json` and seven `skills/*/SKILL.md`; the Hermes `__init__.py` only registers those skills. Install the upstream plugin in Claude Code directly; no MCP server is involved.
+**Port class:** A - the repository is a portable skills package with a `.claude-plugin/plugin.json` and seven `skills/*/SKILL.md`; the Hermes `__init__.py` only registers those skills. Install the upstream plugin in Claude Code directly; no MCP server is involved.
 
 ## What the Hermes plugin does
 A `kind: standalone` plugin whose `register(ctx)` verifies the tree and registers seven skills: `job-search` (front door and home view), `job-search-run` (one headless search pass), `job-search-agent` (operator manual), `job-preference-interview` (writes the prose `preferences.md` brief), `evaluate-job-fit` (judges one posting as not relevant or weak/moderate/strong), `job-search-runbook` (workspace discovery, run contract) and `agent-data-reference` (the job-postings API). Postings come from the `agent-data` CLI, listing id `f9a6ec16-0bfd-44d8-b3ee-073776745ee7`, covering LinkedIn Jobs, Ashby, Greenhouse and Lever. Searches and posting reads go through the wrapper scripts `skills/job-search-run/scripts/search-jobs.sh` and `fetch-posting.sh`, which log every metered call to the workspace's `jobs.jsonl`. It registers no tools or hooks.
