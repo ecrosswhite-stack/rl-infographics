@@ -1,0 +1,175 @@
+<!-- Copied from https://github.com/agent-data/job-search @ dba0c0992e9d7fc6533dd1be3003df7a311168f0, MIT. Original authors retain copyright. -->
+---
+name: job-search
+description: Set up, check on, and steer the user's job search — the front door and home view. Use when they want to start or set up a job search, see their status, matches, or latest digest, change what they are looking for, or start, change, or stop the search that runs on a schedule — set up job search, start my job search, I am looking for a new job, check my job search, show me my matches, what did my job search find, keep this running daily — or /job-search. A first run reaches live matches fast: one question, real postings, then the offer to keep it running on its own. (For a pull with nobody watching, use job-search-run; for configuring or troubleshooting the agent itself, use job-search-agent.)
+---
+
+# job-search
+
+The front door: first-time setup, the home view after that, and where the user steers their search
+from by talking to you. The work belongs to the other skills — `job-search-run` pulls and judges
+postings, `job-preference-interview` writes the brief, `evaluate-job-fit` judges one posting. Two
+more skills carry the mechanics — invoke each as you need it:
+
+- `job-search-runbook` — the workspace, what each file in it holds, the run contract.
+- `agent-data-reference` — the CLI, what a call costs, what to say before spending one.
+
+## Your first message on a first run
+
+Your first output is a message to the user, before any other work. It says what this sets up and
+what they end up with, in this order: a private folder for their search, a short brief of what they
+want, and live postings judged against it. Two sentences.
+
+## How to communicate
+
+These ten rules govern how you say things, in every message, including your first.
+
+1. Define each idea in plain words the first time the user meets it — the brief, a job source, the
+   free monthly calls, the recurring job, the digest — in the sentence or offer that first uses it.
+2. Before metered work, say what it opens with, in your own words, per `agent-data-reference`'s
+   cost recipe.
+3. Ask one question at a time, and only when the answer changes what you do; a closed choice goes
+   through your harness's question interface (numbered prose without one), open questions stay prose.
+4. Show matches as message text in your reply — title, company, location, the reasoning line, the
+   link — as rendered markdown, with the digest's path as a closing detail.
+5. Say what a posting states and name what it leaves unstated; the judgment arrives carrying both.
+6. Use the user's own words for their field, their seniority, and where they want to work.
+7. Every noun in a reply is something the user owns or can see: their preferences, a posting, a
+   search, the digest, the schedule, the folder these live in. The rest is yours to work with.
+8. Narrate events — what you did and what came back. A step that produced nothing to report passes
+   in silence.
+9. Write state in the present tense: what is set up, what runs, what the last run found.
+10. Keep each message to a sentence or two plus whatever document you render; go longer on request.
+
+## Route
+
+Find the workspace with the runbook's discovery step, silently, and go where it points.
+
+- No `config.yaml` there yet → **First run**, below.
+- A workspace already set up → **Home**, below.
+- The registry file is there and JSON parsing fails on it → offer to rewrite it around the
+  workspace you can see; on a yes, write it fresh with that workspace as `active_workspace`.
+
+Other intents leave: what they want in a job → `job-preference-interview`, a pasted posting →
+`evaluate-job-fit`, an unwatched pull → `job-search-run`, the agent itself → `job-search-agent`.
+
+## First run
+
+1. Open with your first message above.
+2. Run `agent-data whoami` — the whole preflight, local and free. On `api_key_set: false`, say the
+   key is missing, give `agent-data-reference`'s `agent-data init` line, and go on once it reports
+   true.
+3. Build the workspace where discovery pointed: copy this skill's `templates/config.example.yaml` to
+   `config.yaml` and this skill's `templates/workspace.gitignore` to `.gitignore`, create an empty
+   `jobs.jsonl`, and make `runs/` and `reports/`. A file already there stays as it is. Say in one
+   line that this folder is theirs and private.
+4. Write this machine's zone into `schedule.timezone` in that `config.yaml`: `readlink /etc/localtime`
+   prints it after `zoneinfo/`, and a schedule fires on the machine's own clock.
+5. Get the brief. Hand `job-preference-interview` a request for a quick sketch: it asks its one
+   question and writes `preferences.md`. When the request already says what they want, hand those
+   words over as that question's answer and ask for the brief drafted from them — whatever they
+   name, in whatever detail. Role and where they want to work is usually all a first request
+   carries; pay, hours and dealbreakers wait for the deeper pass they can take once matches are on
+   screen.
+6. Derive two or three searches from the brief into `queries[]` in `config.yaml`, each with a short
+   `id` from its own terms and the template's field set: keywords are the role and domain terms a job
+   board matches, location is the geography the brief names, and remote rides in the keywords per
+   `agent-data-reference`'s LinkedIn row. Say which searches you derived and that they change on
+   request.
+7. Give the user the cost sentence rule 2 asks for, then invoke `job-search-run` on the workspace.
+8. Render what came back: the strong matches, then the moderate ones, plus any confirm note the
+   digest carries. Where the run judged postings and few or
+   none of them fit, say what it searched and name the one change most likely to help.
+9. Then offer the recurring job below, and land them on the home view once that is settled.
+
+## The recurring job
+
+A search that runs on its own is the point of the whole thing, so offer it while the first matches
+are still on screen, and say plainly what it is: this same search, running by itself on a schedule,
+leaving a digest of whatever is new. Say what that cadence costs to keep: the calls one run opens
+with, that many again every day or week it fires, against the free monthly calls
+`agent-data-reference` counts — the user hears the monthly total before a yes is recorded. Ask once, with daily as the
+usual cadence; their yes starts the install, as does a request that already asks for it.
+
+1. Write today's date into `schedule.consented` in `config.yaml`, with `schedule.frequency` and
+   `schedule.time` holding the cadence they picked.
+2. This skill's `scripts/schedule-line.sh <frequency> [HH:MM]` prints the cron time expression for
+   that cadence. Wrap it in whatever your harness schedules with — cron, launchd, or the harness's own
+   recurring-job command — running `job-search-run` against this workspace the way the runbook's
+   unattended section shows. As you install it, show the user that line and where it lives; this
+   changes their machine.
+3. **Run the canary now**: a job that has been installed and has never run is unproven. It spends,
+   and in a session that has not searched yet it is the first metered call, so give the cost sentence
+   rule 2 asks for first. Then fire the job through the path the scheduler will use — that invocation
+   and that environment, rather than this session — and stay with it until it lands.
+4. The canary passes when it leaves a run record whose `trigger` is `scheduled` and whose close is
+   healthy — `close_state: complete` with `run_health: healthy`. On that record and not before,
+   write the job into the registry the runbook names, `installed` and `verified` both true, which is
+   where the home view reads the schedule from; setup is finished there, and the user hears that the
+   schedule is live and when it next runs. Any other ending — the canary failed, or you could not fire
+   it at all — goes the same way: leave nothing installed that has not run, so remove the job the way
+   the turn-off recipe below does, leave the registry unwritten and `schedule.consented` as it is, and
+   say what stopped the canary and what the next step is.
+
+To turn it off, undo the install the way it was made — that cron line deleted, that launchd job
+unloaded and its file removed, or the harness's own removal command — then clear the registry's
+`scheduling` marker (`installed: false` or the object dropped) and say what was removed. A user who
+leaves it off hears that it starts whenever they ask, and a search on demand is one sentence away.
+
+## Home
+
+Read, all of it local: `config.yaml` (enabled queries, `search.sources`, `schedule.frequency`,
+`schedule.consented`), the registry the runbook names, for the schedule state, the `updated_at` line
+of `preferences.md` (`created_at` where that is the only one), and the newest `runs/<run_id>.json`
+and the digest it points at. For the match counts, run this skill's
+`scripts/posting-counts.sh <workspace>/jobs.jsonl` rather than reading that log yourself: it prints
+`relevant`, `to_confirm` and `filtered` on stdout, one `key=value` per line, and writes one line to
+stderr. Read the
+judgment count, not the line count, before saying the search has found nothing: three zeroed counts
+over `0 postings carry a judgment` mean nothing in the log has been judged yet, and the same three
+over a judgment count above zero mean every posting judged is the same opening as another one.
+`0 of 0 lines name an event` is an empty
+log, and a line count above zero with none of those lines naming an event is a file that is not this
+event log. The log only grows — every run appends to it and nothing shortens it. On exit 2, leave
+the Matches block off the card and say the workspace holds no event log yet. Then render the card:
+
+```
+Job search — <workspace path>
+Brief: updated <date>  ·  Sources: LinkedIn  ·  Schedule: daily  ·  Last run: healthy
+
+Latest digest — <date>
+  <the digest's counts line, as it is written there>
+
+Matches
+  <n> relevant postings found · <k> need your confirmation · <f> filtered out
+
+What next? Just tell me:
+  • run a search now            • add or edit a query
+  • change how often it runs    • update your preferences
+  • show the latest digest      • show your preferences brief
+```
+
+Sources are the ones `search.sources` lists, in the words a person uses for them; the schedule reads
+as its cadence while `schedule.consented` holds a date and the registry's `scheduling` carries
+`installed` and `verified` both true, and off otherwise. Last run is the newest record's
+`run_health`. In Matches, `<n>` is `relevant`,
+`<k>` is `to_confirm` and `<f>` is `filtered`, each taken from the script's output rather than
+worked out; `<k>` counts among the relevant postings only, and a posting whose judgment names
+another one in `same_role_as` is in none of the three, because it is the same opening seen twice and
+the posting it names is counted on its own line. A record whose `close_state` is `blocked` or
+`interrupted` earns a line under the card: what stopped that run, which its record and digest name,
+and the one thing that gets it going again. A record whose `postings_unreviewed` is not zero is
+`blocked` or `interrupted` too and already has that line; add to it how many postings that run
+found and never judged, and the
+offer to run the search again, which reaches them because a posting carrying no judgment is not
+treated as one already seen. Before the first run, offer that search in place of the digest and
+Matches lines. A brief older than 30 days, where runs have happened since, earns one offer under the
+card to refresh it through `job-preference-interview`.
+
+## When the user reacts
+
+| What they say | Where it lands |
+|---|---|
+| A preference that holds across postings — only fully-remote, nothing under a pay floor | `preferences.md`, through `job-preference-interview`, which refreshes `updated_at`. Confirm in one line; a run in flight judges what is left under the new brief. |
+| A reaction that reads two ways — the location is wrong, too junior | one short question, asked where the two readings lead to different actions, and your own best reading where they land the same. |
+| A change to what gets searched — add a source, widen the location, only the last day | a `queries[]` or `search.sources` edit in `config.yaml`, with the new cost stated first per rule 2. A one-off ask runs once and leaves the file as it is. Every config edit here is yours to make, comments and shape preserved. |
